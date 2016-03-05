@@ -616,7 +616,7 @@
           </AssociationSet>
           <EntitySet Name="Users" EntityType="KennelsModel.User" />
         </EntityContainer>
-        <EntityType Name="Animal">
+        <EntityType Name="Animal" Abstract="true">
           <Key>
             <PropertyRef Name="AnimalID" />
           </Key>

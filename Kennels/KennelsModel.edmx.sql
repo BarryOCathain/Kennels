@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2016 20:22:48
+-- Date Created: 03/05/2016 20:26:11
 -- Generated from EDMX file: C:\Users\arcan\Source\Repos\Kennels\Kennels\KennelsModel.edmx
 -- --------------------------------------------------
 
@@ -117,6 +117,9 @@ IF OBJECT_ID(N'[dbo].[Payments]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Discounts]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Discounts];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 IF OBJECT_ID(N'[dbo].[Animals_Dog]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Animals_Dog];
