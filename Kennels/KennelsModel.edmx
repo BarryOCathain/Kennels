@@ -4,11 +4,543 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="KennelsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="KennelsModelTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="KennelsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="KennelsModelStoreContainer">
+    <EntitySet Name="Animals" EntityType="KennelsModel.Store.Animals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pricings" EntityType="KennelsModel.Store.Pricings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pens" EntityType="KennelsModel.Store.Pens" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kennels" EntityType="KennelsModel.Store.Kennels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notes" EntityType="KennelsModel.Store.Notes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Bookings" EntityType="KennelsModel.Store.Bookings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Owners" EntityType="KennelsModel.Store.Owners" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DogBreeds" EntityType="KennelsModel.Store.DogBreeds" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BirdSpecies" EntityType="KennelsModel.Store.BirdSpecies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookingPenAnimals" EntityType="KennelsModel.Store.BookingPenAnimals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PaymentTypes" EntityType="KennelsModel.Store.PaymentTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Payments" EntityType="KennelsModel.Store.Payments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Discounts" EntityType="KennelsModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="KennelsModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Animals_Dog" EntityType="KennelsModel.Store.Animals_Dog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Animals_Bird" EntityType="KennelsModel.Store.Animals_Bird" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Animals_Cat" EntityType="KennelsModel.Store.Animals_Cat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Animals_Hamster" EntityType="KennelsModel.Store.Animals_Hamster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookingDiscount" EntityType="KennelsModel.Store.BookingDiscount" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PricingAnimal" Association="KennelsModel.Store.PricingAnimal">
+      <End Role="Pricing" EntitySet="Pricings" />
+      <End Role="Animal" EntitySet="Animals" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalNote" Association="KennelsModel.Store.AnimalNote">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Note" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="BreedDog" Association="KennelsModel.Store.BreedDog">
+      <End Role="Breed" EntitySet="DogBreeds" />
+      <End Role="Dog" EntitySet="Animals_Dog" />
+    </AssociationSet>
+    <AssociationSet Name="BirdSpeciesBird" Association="KennelsModel.Store.BirdSpeciesBird">
+      <End Role="BirdSpecies" EntitySet="BirdSpecies" />
+      <End Role="Bird" EntitySet="Animals_Bird" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalOwner" Association="KennelsModel.Store.AnimalOwner">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Owner" EntitySet="Owners" />
+    </AssociationSet>
+    <AssociationSet Name="KennelPen" Association="KennelsModel.Store.KennelPen">
+      <End Role="Kennel" EntitySet="Kennels" />
+      <End Role="Pen" EntitySet="Pens" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalKennel" Association="KennelsModel.Store.AnimalKennel">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Kennel" EntitySet="Kennels" />
+    </AssociationSet>
+    <AssociationSet Name="BookingBookingPenAnimal" Association="KennelsModel.Store.BookingBookingPenAnimal">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
+    </AssociationSet>
+    <AssociationSet Name="AnimalBookingPenAnimal" Association="KennelsModel.Store.AnimalBookingPenAnimal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
+    </AssociationSet>
+    <AssociationSet Name="OwnerBooking" Association="KennelsModel.Store.OwnerBooking">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="PenBookingPenAnimal" Association="KennelsModel.Store.PenBookingPenAnimal">
+      <End Role="Pen" EntitySet="Pens" />
+      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
+    </AssociationSet>
+    <AssociationSet Name="PaymentTypePayment" Association="KennelsModel.Store.PaymentTypePayment">
+      <End Role="PaymentType" EntitySet="PaymentTypes" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="BookingPayment" Association="KennelsModel.Store.BookingPayment">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDiscount_Booking" Association="KennelsModel.Store.FK_BookingDiscount_Booking">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="BookingDiscount" EntitySet="BookingDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingDiscount_Discount" Association="KennelsModel.Store.FK_BookingDiscount_Discount">
+      <End Role="Discount" EntitySet="Discounts" />
+      <End Role="BookingDiscount" EntitySet="BookingDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dog_inherits_Animal" Association="KennelsModel.Store.FK_Dog_inherits_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Dog" EntitySet="Animals_Dog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bird_inherits_Animal" Association="KennelsModel.Store.FK_Bird_inherits_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Bird" EntitySet="Animals_Bird" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cat_inherits_Animal" Association="KennelsModel.Store.FK_Cat_inherits_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Cat" EntitySet="Animals_Cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hamster_inherits_Animal" Association="KennelsModel.Store.FK_Hamster_inherits_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="Hamster" EntitySet="Animals_Hamster" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Animals">
+    <Key>
+      <PropertyRef Name="AnimalID" />
+    </Key>
+    <Property Name="AnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsMale" Type="bit" Nullable="false" />
+    <Property Name="Owner_OwnerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pricings">
+    <Key>
+      <PropertyRef Name="PricingID" />
+    </Key>
+    <Property Name="PricingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CostPerNight" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Animal_AnimalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pens">
+    <Key>
+      <PropertyRef Name="PenID" />
+    </Key>
+    <Property Name="PenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="Kennel_KennelID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kennels">
+    <Key>
+      <PropertyRef Name="KennelID" />
+    </Key>
+    <Property Name="KennelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Animal_AnimalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="NoteID" />
+    </Key>
+    <Property Name="NoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Animal_AnimalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bookings">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Owner_OwnerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Owners">
+    <Key>
+      <PropertyRef Name="OwnerID" />
+    </Key>
+    <Property Name="OwnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PropertyNameNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Postcode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DogBreeds">
+    <Key>
+      <PropertyRef Name="DogBreedID" />
+    </Key>
+    <Property Name="DogBreedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BirdSpecies">
+    <Key>
+      <PropertyRef Name="BirdSpeciesID" />
+    </Key>
+    <Property Name="BirdSpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingPenAnimals">
+    <Key>
+      <PropertyRef Name="BookingPenAnimalID" />
+    </Key>
+    <Property Name="BookingPenAnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="Booking_BookingID" Type="int" Nullable="false" />
+    <Property Name="Animal_AnimalID" Type="int" Nullable="false" />
+    <Property Name="Pen_PenID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentTypes">
+    <Key>
+      <PropertyRef Name="PaymentTypeID" />
+    </Key>
+    <Property Name="PaymentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="PaymentType_PaymentTypeID" Type="int" Nullable="false" />
+    <Property Name="Booking_BookingID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discounts">
+    <Key>
+      <PropertyRef Name="DiscountID" />
+    </Key>
+    <Property Name="DiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Multiplier" Type="float" Nullable="false" />
+    <Property Name="Value" Type="float" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsObsolete" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Animals_Dog">
+    <Key>
+      <PropertyRef Name="AnimalID" />
+    </Key>
+    <Property Name="AnimalID" Type="int" Nullable="false" />
+    <Property Name="DogBreed_DogBreedID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Animals_Bird">
+    <Key>
+      <PropertyRef Name="AnimalID" />
+    </Key>
+    <Property Name="AnimalID" Type="int" Nullable="false" />
+    <Property Name="BirdSpecy_BirdSpeciesID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Animals_Cat">
+    <Key>
+      <PropertyRef Name="AnimalID" />
+    </Key>
+    <Property Name="AnimalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Animals_Hamster">
+    <Key>
+      <PropertyRef Name="AnimalID" />
+    </Key>
+    <Property Name="AnimalID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingDiscount">
+    <Key>
+      <PropertyRef Name="Bookings_BookingID" />
+      <PropertyRef Name="Discounts_DiscountID" />
+    </Key>
+    <Property Name="Bookings_BookingID" Type="int" Nullable="false" />
+    <Property Name="Discounts_DiscountID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PricingAnimal">
+    <End Role="Pricing" Type="KennelsModel.Store.Pricings" Multiplicity="*" />
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Pricing">
+        <PropertyRef Name="Animal_AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalNote">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
+    <End Role="Note" Type="KennelsModel.Store.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Note">
+        <PropertyRef Name="Animal_AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BreedDog">
+    <End Role="Breed" Type="KennelsModel.Store.DogBreeds" Multiplicity="1" />
+    <End Role="Dog" Type="KennelsModel.Store.Animals_Dog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Breed">
+        <PropertyRef Name="DogBreedID" />
+      </Principal>
+      <Dependent Role="Dog">
+        <PropertyRef Name="DogBreed_DogBreedID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BirdSpeciesBird">
+    <End Role="BirdSpecies" Type="KennelsModel.Store.BirdSpecies" Multiplicity="1" />
+    <End Role="Bird" Type="KennelsModel.Store.Animals_Bird" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirdSpecies">
+        <PropertyRef Name="BirdSpeciesID" />
+      </Principal>
+      <Dependent Role="Bird">
+        <PropertyRef Name="BirdSpecy_BirdSpeciesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalOwner">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="*" />
+    <End Role="Owner" Type="KennelsModel.Store.Owners" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Animal">
+        <PropertyRef Name="Owner_OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KennelPen">
+    <End Role="Kennel" Type="KennelsModel.Store.Kennels" Multiplicity="1" />
+    <End Role="Pen" Type="KennelsModel.Store.Pens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kennel">
+        <PropertyRef Name="KennelID" />
+      </Principal>
+      <Dependent Role="Pen">
+        <PropertyRef Name="Kennel_KennelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalKennel">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
+    <End Role="Kennel" Type="KennelsModel.Store.Kennels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Kennel">
+        <PropertyRef Name="Animal_AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookingBookingPenAnimal">
+    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="1" />
+    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingPenAnimal">
+        <PropertyRef Name="Booking_BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AnimalBookingPenAnimal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
+    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="BookingPenAnimal">
+        <PropertyRef Name="Animal_AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OwnerBooking">
+    <End Role="Owner" Type="KennelsModel.Store.Owners" Multiplicity="1" />
+    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerID" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Owner_OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PenBookingPenAnimal">
+    <End Role="Pen" Type="KennelsModel.Store.Pens" Multiplicity="1" />
+    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pen">
+        <PropertyRef Name="PenID" />
+      </Principal>
+      <Dependent Role="BookingPenAnimal">
+        <PropertyRef Name="Pen_PenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PaymentTypePayment">
+    <End Role="PaymentType" Type="KennelsModel.Store.PaymentTypes" Multiplicity="1" />
+    <End Role="Payment" Type="KennelsModel.Store.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentType">
+        <PropertyRef Name="PaymentTypeID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentType_PaymentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookingPayment">
+    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="1" />
+    <End Role="Payment" Type="KennelsModel.Store.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Booking_BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDiscount_Booking">
+    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="1" />
+    <End Role="BookingDiscount" Type="KennelsModel.Store.BookingDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingDiscount">
+        <PropertyRef Name="Bookings_BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingDiscount_Discount">
+    <End Role="BookingDiscount" Type="KennelsModel.Store.BookingDiscount" Multiplicity="*" />
+    <End Role="Discount" Type="KennelsModel.Store.Discounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="DiscountID" />
+      </Principal>
+      <Dependent Role="BookingDiscount">
+        <PropertyRef Name="Discounts_DiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dog_inherits_Animal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dog" Type="KennelsModel.Store.Animals_Dog" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Dog">
+        <PropertyRef Name="AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bird_inherits_Animal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Bird" Type="KennelsModel.Store.Animals_Bird" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Bird">
+        <PropertyRef Name="AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cat_inherits_Animal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cat" Type="KennelsModel.Store.Animals_Cat" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Cat">
+        <PropertyRef Name="AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hamster_inherits_Animal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hamster" Type="KennelsModel.Store.Animals_Hamster" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="Hamster">
+        <PropertyRef Name="AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="KennelsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -82,6 +614,7 @@
             <End Role="Booking" EntitySet="Bookings" />
             <End Role="Discount" EntitySet="Discounts" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="KennelsModel.User" />
         </EntityContainer>
         <EntityType Name="Animal">
           <Key>
@@ -89,13 +622,13 @@
           </Key>
           <Property Name="AnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Age" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Pricings" Relationship="KennelsModel.PricingAnimal" FromRole="Animal" ToRole="Pricing" />
           <NavigationProperty Name="Notes" Relationship="KennelsModel.AnimalNote" FromRole="Animal" ToRole="Note" />
-          <Property Name="IsMale" Type="String" Nullable="false" />
+          <Property Name="IsMale" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Owner" Relationship="KennelsModel.AnimalOwner" FromRole="Animal" ToRole="Owner" />
           <NavigationProperty Name="Kennels" Relationship="KennelsModel.AnimalKennel" FromRole="Animal" ToRole="Kennel" />
           <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.AnimalBookingPenAnimal" FromRole="Animal" ToRole="BookingPenAnimal" />
@@ -105,12 +638,12 @@
             <PropertyRef Name="PricingID" />
           </Key>
           <Property Name="PricingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CostPerNight" Type="String" Nullable="false" />
-          <Property Name="StartDate" Type="String" Nullable="false" />
-          <Property Name="EndDate" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="CostPerNight" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Animal" Relationship="KennelsModel.PricingAnimal" FromRole="Pricing" ToRole="Animal" />
         </EntityType>
         <Association Name="PricingAnimal">
@@ -123,10 +656,10 @@
           </Key>
           <Property Name="PenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
-          <Property Name="Capacity" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kennel" Relationship="KennelsModel.KennelPen" FromRole="Pen" ToRole="Kennel" />
           <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.PenBookingPenAnimal" FromRole="Pen" ToRole="BookingPenAnimal" />
         </EntityType>
@@ -136,9 +669,9 @@
           </Key>
           <Property Name="KennelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Pens" Relationship="KennelsModel.KennelPen" FromRole="Kennel" ToRole="Pen" />
           <NavigationProperty Name="Animal" Relationship="KennelsModel.AnimalKennel" FromRole="Kennel" ToRole="Animal" />
         </EntityType>
@@ -148,9 +681,9 @@
           </Key>
           <Property Name="NoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Animal" Relationship="KennelsModel.AnimalNote" FromRole="Note" ToRole="Animal" />
         </EntityType>
         <Association Name="AnimalNote">
@@ -162,15 +695,15 @@
             <PropertyRef Name="BookingID" />
           </Key>
           <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartDate" Type="String" Nullable="false" />
-          <Property Name="EndDate" Type="String" Nullable="false" />
-          <Property Name="Cost" Type="String" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="Cost" Type="Double" Nullable="false" />
           <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.BookingBookingPenAnimal" FromRole="Booking" ToRole="BookingPenAnimal" />
           <NavigationProperty Name="Owner" Relationship="KennelsModel.OwnerBooking" FromRole="Booking" ToRole="Owner" />
           <NavigationProperty Name="Payments" Relationship="KennelsModel.BookingPayment" FromRole="Booking" ToRole="Payment" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Discounts" Relationship="KennelsModel.BookingDiscount" FromRole="Booking" ToRole="Discount" />
         </EntityType>
         <EntityType Name="Owner">
@@ -190,9 +723,9 @@
           <Property Name="Email" Type="String" Nullable="false" />
           <NavigationProperty Name="Animals" Relationship="KennelsModel.AnimalOwner" FromRole="Owner" ToRole="Animal" />
           <NavigationProperty Name="Bookings" Relationship="KennelsModel.OwnerBooking" FromRole="Owner" ToRole="Booking" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Dog" BaseType="KennelsModel.Animal">
           <NavigationProperty Name="DogBreed" Relationship="KennelsModel.BreedDog" FromRole="Dog" ToRole="Breed" />
@@ -204,9 +737,9 @@
           <Property Name="DogBreedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Dogs" Relationship="KennelsModel.BreedDog" FromRole="Breed" ToRole="Dog" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="BreedDog">
           <End Type="KennelsModel.DogBreed" Role="Breed" Multiplicity="1" />
@@ -222,9 +755,9 @@
           <Property Name="BirdSpeciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Birds" Relationship="KennelsModel.BirdSpeciesBird" FromRole="BirdSpecies" ToRole="Bird" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="BirdSpeciesBird">
           <End Type="KennelsModel.BirdSpecies" Role="BirdSpecies" Multiplicity="1" />
@@ -247,9 +780,14 @@
           <End Type="KennelsModel.Kennel" Role="Kennel" Multiplicity="*" />
         </Association>
         <EntityType Name="BookingPenAnimal">
+          <Key>
+            <PropertyRef Name="BookingPenAnimalID" />
+          </Key>
           <NavigationProperty Name="Booking" Relationship="KennelsModel.BookingBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Booking" />
           <NavigationProperty Name="Animal" Relationship="KennelsModel.AnimalBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Animal" />
           <NavigationProperty Name="Pen" Relationship="KennelsModel.PenBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Pen" />
+          <Property Name="BookingPenAnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cost" Type="Double" Nullable="false" />
         </EntityType>
         <Association Name="BookingBookingPenAnimal">
           <End Type="KennelsModel.Booking" Role="Booking" Multiplicity="1" />
@@ -274,21 +812,21 @@
           <Property Name="PaymentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Payments" Relationship="KennelsModel.PaymentTypePayment" FromRole="PaymentType" ToRole="Payment" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
           <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Amount" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
           <NavigationProperty Name="PaymentType" Relationship="KennelsModel.PaymentTypePayment" FromRole="Payment" ToRole="PaymentType" />
           <NavigationProperty Name="Booking" Relationship="KennelsModel.BookingPayment" FromRole="Payment" ToRole="Booking" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="PaymentTypePayment">
           <End Type="KennelsModel.PaymentType" Role="PaymentType" Multiplicity="1" />
@@ -304,28 +842,340 @@
           </Key>
           <Property Name="DiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Multiplier" Type="String" Nullable="false" />
-          <Property Name="Value" Type="String" Nullable="false" />
-          <Property Name="IsObsolete" Type="String" Nullable="false" />
+          <Property Name="Multiplier" Type="Double" Nullable="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
-          <Property Name="CreatedDate" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="KennelsModel.BookingDiscount" FromRole="Discount" ToRole="Booking" />
         </EntityType>
         <Association Name="BookingDiscount">
           <End Type="KennelsModel.Booking" Role="Booking" Multiplicity="*" />
           <End Type="KennelsModel.Discount" Role="Discount" Multiplicity="*" />
         </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="KennelsModel" />
-        <Alias Key="Target" Value="KennelsModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="KennelsModelContainer" StorageEntityContainer="KennelsModelTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KennelsModelStoreContainer" CdmEntityContainer="KennelsModelContainer">
+    <EntitySetMapping Name="Animals">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Animal)">
+        <MappingFragment StoreEntitySet="Animals">
+          <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Dog)">
+        <MappingFragment StoreEntitySet="Animals_Dog">
+          <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Bird)">
+        <MappingFragment StoreEntitySet="Animals_Bird">
+          <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Cat)">
+        <MappingFragment StoreEntitySet="Animals_Cat">
+          <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Hamster)">
+        <MappingFragment StoreEntitySet="Animals_Hamster">
+          <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pricings">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Pricing)">
+        <MappingFragment StoreEntitySet="Pricings">
+          <ScalarProperty Name="PricingID" ColumnName="PricingID" />
+          <ScalarProperty Name="CostPerNight" ColumnName="CostPerNight" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pens">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Pen)">
+        <MappingFragment StoreEntitySet="Pens">
+          <ScalarProperty Name="PenID" ColumnName="PenID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kennels">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Kennel)">
+        <MappingFragment StoreEntitySet="Kennels">
+          <ScalarProperty Name="KennelID" ColumnName="KennelID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Note)">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Booking)">
+        <MappingFragment StoreEntitySet="Bookings">
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Owner)">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="PropertyNameNumber" ColumnName="PropertyNameNumber" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DogBreeds">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.DogBreed)">
+        <MappingFragment StoreEntitySet="DogBreeds">
+          <ScalarProperty Name="DogBreedID" ColumnName="DogBreedID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BirdSpecies">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.BirdSpecies)">
+        <MappingFragment StoreEntitySet="BirdSpecies">
+          <ScalarProperty Name="BirdSpeciesID" ColumnName="BirdSpeciesID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingPenAnimals">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.BookingPenAnimal)">
+        <MappingFragment StoreEntitySet="BookingPenAnimals">
+          <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.PaymentType)">
+        <MappingFragment StoreEntitySet="PaymentTypes">
+          <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Payment)">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Discount)">
+        <MappingFragment StoreEntitySet="Discounts">
+          <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Multiplier" ColumnName="Multiplier" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsObsolete" ColumnName="IsObsolete" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PricingAnimal" TypeName="KennelsModel.PricingAnimal" StoreEntitySet="Pricings">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="Animal_AnimalID" />
+      </EndProperty>
+      <EndProperty Name="Pricing">
+        <ScalarProperty Name="PricingID" ColumnName="PricingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AnimalNote" TypeName="KennelsModel.AnimalNote" StoreEntitySet="Notes">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="Animal_AnimalID" />
+      </EndProperty>
+      <EndProperty Name="Note">
+        <ScalarProperty Name="NoteID" ColumnName="NoteID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BreedDog" TypeName="KennelsModel.BreedDog" StoreEntitySet="Animals_Dog">
+      <EndProperty Name="Breed">
+        <ScalarProperty Name="DogBreedID" ColumnName="DogBreed_DogBreedID" />
+      </EndProperty>
+      <EndProperty Name="Dog">
+        <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BirdSpeciesBird" TypeName="KennelsModel.BirdSpeciesBird" StoreEntitySet="Animals_Bird">
+      <EndProperty Name="BirdSpecies">
+        <ScalarProperty Name="BirdSpeciesID" ColumnName="BirdSpecy_BirdSpeciesID" />
+      </EndProperty>
+      <EndProperty Name="Bird">
+        <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AnimalOwner" TypeName="KennelsModel.AnimalOwner" StoreEntitySet="Animals">
+      <EndProperty Name="Owner">
+        <ScalarProperty Name="OwnerID" ColumnName="Owner_OwnerID" />
+      </EndProperty>
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KennelPen" TypeName="KennelsModel.KennelPen" StoreEntitySet="Pens">
+      <EndProperty Name="Kennel">
+        <ScalarProperty Name="KennelID" ColumnName="Kennel_KennelID" />
+      </EndProperty>
+      <EndProperty Name="Pen">
+        <ScalarProperty Name="PenID" ColumnName="PenID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AnimalKennel" TypeName="KennelsModel.AnimalKennel" StoreEntitySet="Kennels">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="Animal_AnimalID" />
+      </EndProperty>
+      <EndProperty Name="Kennel">
+        <ScalarProperty Name="KennelID" ColumnName="KennelID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookingBookingPenAnimal" TypeName="KennelsModel.BookingBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingID" ColumnName="Booking_BookingID" />
+      </EndProperty>
+      <EndProperty Name="BookingPenAnimal">
+        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AnimalBookingPenAnimal" TypeName="KennelsModel.AnimalBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="Animal_AnimalID" />
+      </EndProperty>
+      <EndProperty Name="BookingPenAnimal">
+        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OwnerBooking" TypeName="KennelsModel.OwnerBooking" StoreEntitySet="Bookings">
+      <EndProperty Name="Owner">
+        <ScalarProperty Name="OwnerID" ColumnName="Owner_OwnerID" />
+      </EndProperty>
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PenBookingPenAnimal" TypeName="KennelsModel.PenBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
+      <EndProperty Name="Pen">
+        <ScalarProperty Name="PenID" ColumnName="Pen_PenID" />
+      </EndProperty>
+      <EndProperty Name="BookingPenAnimal">
+        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PaymentTypePayment" TypeName="KennelsModel.PaymentTypePayment" StoreEntitySet="Payments">
+      <EndProperty Name="PaymentType">
+        <ScalarProperty Name="PaymentTypeID" ColumnName="PaymentType_PaymentTypeID" />
+      </EndProperty>
+      <EndProperty Name="Payment">
+        <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookingPayment" TypeName="KennelsModel.BookingPayment" StoreEntitySet="Payments">
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingID" ColumnName="Booking_BookingID" />
+      </EndProperty>
+      <EndProperty Name="Payment">
+        <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookingDiscount" TypeName="KennelsModel.BookingDiscount" StoreEntitySet="BookingDiscount">
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingID" ColumnName="Bookings_BookingID" />
+      </EndProperty>
+      <EndProperty Name="Discount">
+        <ScalarProperty Name="DiscountID" ColumnName="Discounts_DiscountID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -339,6 +1189,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -61,19 +61,83 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animal.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bird.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BirdSpecies.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookingPenAnimal.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cat.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Discount.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dog.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DogBreed.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hamster.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kennel.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KennelsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KennelsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KennelsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KennelsModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KennelsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Note.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Owner.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pen.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pricing.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>KennelsModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,6 +167,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KennelsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KennelsModel.Context.cs</LastGenOutput>
+      <DependentUpon>KennelsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="KennelsModel.edmx.sql" />
+    <Content Include="KennelsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>KennelsModel.cs</LastGenOutput>
+      <DependentUpon>KennelsModel.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
