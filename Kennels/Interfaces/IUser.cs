@@ -8,7 +8,7 @@ namespace Kennels.Interfaces
 {
     interface IUser
     {
-        User AddUser(string name, string password, User createdBy, DateTime createdOn, bool isAdmin);
+        User AddUser(string name, string password, User createdBy, bool isAdmin);
 
         bool DeleteUser(User user);
 

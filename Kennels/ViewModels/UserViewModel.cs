@@ -16,7 +16,7 @@ namespace Kennels.ViewModels
             _context = context;
         }
 
-        public User AddUser(string name, string password, User createdBy, DateTime createdOn, bool isAdmin)
+        public User AddUser(string name, string password, User createdBy, bool isAdmin)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("New User name not specified.");
@@ -27,16 +27,13 @@ namespace Kennels.ViewModels
             if (createdBy == null)
                 throw new ArgumentException("New User Created By User not specified.");
 
-            if (createdOn == null)
-                throw new ArgumentException("New User Created date not specified.");
-
             User u = new User
             {
                 Name = name,
                 Password = password,
                 IsObsolete = false,
                 CreatedBy = createdBy.Name,
-                CreatedDate = createdOn,
+                CreatedDate = DateTime.Now,
                 IsAdmin = isAdmin
             };
 

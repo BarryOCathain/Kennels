@@ -97,6 +97,7 @@
     <Compile Include="Hamster.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IOwner.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Kennel.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
@@ -139,6 +140,7 @@
     <Compile Include="User.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\OwnerViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
