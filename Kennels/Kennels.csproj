@@ -99,7 +99,9 @@
     </Compile>
     <Compile Include="Interfaces\IBird.cs" />
     <Compile Include="Interfaces\IBirdSpecies.cs" />
+    <Compile Include="Interfaces\ICat.cs" />
     <Compile Include="Interfaces\IDiscount.cs" />
+    <Compile Include="Interfaces\IDog.cs" />
     <Compile Include="Interfaces\IDogBreed.cs" />
     <Compile Include="Interfaces\IKennel.cs" />
     <Compile Include="Interfaces\INote.cs" />
@@ -152,8 +154,10 @@
     </Compile>
     <Compile Include="ViewModels\BirdSpeciesViewModel.cs" />
     <Compile Include="ViewModels\BirdViewModel.cs" />
+    <Compile Include="ViewModels\CatViewModel.cs" />
     <Compile Include="ViewModels\DiscountViewModel.cs" />
     <Compile Include="ViewModels\DogBreedViewModel.cs" />
+    <Compile Include="ViewModels\DogViewModel.cs" />
     <Compile Include="ViewModels\KennelViewModel.cs" />
     <Compile Include="ViewModels\NoteViewModel.cs" />
     <Compile Include="ViewModels\OwnerViewModel.cs" />
