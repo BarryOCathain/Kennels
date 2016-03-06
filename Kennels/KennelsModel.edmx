@@ -120,7 +120,7 @@
       <PropertyRef Name="PricingID" />
     </Key>
     <Property Name="PricingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CostPerNight" Type="int" Nullable="false" />
+    <Property Name="CostPerNight" Type="float" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
     <Property Name="IsObsolete" Type="bit" Nullable="false" />
@@ -638,7 +638,7 @@
             <PropertyRef Name="PricingID" />
           </Key>
           <Property Name="PricingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CostPerNight" Type="Int32" Nullable="false" />
+          <Property Name="CostPerNight" Type="Double" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" />
           <Property Name="IsObsolete" Type="Boolean" Nullable="false" />

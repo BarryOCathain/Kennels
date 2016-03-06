@@ -62,7 +62,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                User usr = _context.Users.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                User usr = _context.Users.Where(u => u.Equals(user)).FirstOrDefault();
 
                 usr.Password = newPassword;
 
@@ -78,7 +78,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                User usr = _context.Users.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                User usr = _context.Users.Where(u => u.Equals(user)).FirstOrDefault();
 
                 usr.IsObsolete = true;
 
@@ -132,7 +132,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                User usr = _context.Users.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                User usr = _context.Users.Where(u => u.Equals(user)).FirstOrDefault();
 
                 usr.IsAdmin = true;
 

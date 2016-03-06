@@ -97,7 +97,16 @@
     <Compile Include="Hamster.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBirdSpecies.cs" />
+    <Compile Include="Interfaces\IDiscount.cs" />
+    <Compile Include="Interfaces\IDogBreed.cs" />
+    <Compile Include="Interfaces\IKennel.cs" />
+    <Compile Include="Interfaces\INote.cs" />
     <Compile Include="Interfaces\IOwner.cs" />
+    <Compile Include="Interfaces\IPayment.cs" />
+    <Compile Include="Interfaces\IPaymentType.cs" />
+    <Compile Include="Interfaces\IPen.cs" />
+    <Compile Include="Interfaces\IPricing.cs" />
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Kennel.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
@@ -140,7 +149,16 @@
     <Compile Include="User.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BirdSpeciesViewModel.cs" />
+    <Compile Include="ViewModels\DiscountViewModel.cs" />
+    <Compile Include="ViewModels\DogBreedViewModel.cs" />
+    <Compile Include="ViewModels\KennelViewModel.cs" />
+    <Compile Include="ViewModels\NoteViewModel.cs" />
     <Compile Include="ViewModels\OwnerViewModel.cs" />
+    <Compile Include="ViewModels\PaymentTypeViewModel.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\PenViewModel.cs" />
+    <Compile Include="ViewModels\PricingViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2016 20:26:11
+-- Date Created: 03/05/2016 22:40:29
 -- Generated from EDMX file: C:\Users\arcan\Source\Repos\Kennels\Kennels\KennelsModel.edmx
 -- --------------------------------------------------
 
@@ -157,7 +157,7 @@ GO
 -- Creating table 'Pricings'
 CREATE TABLE [dbo].[Pricings] (
     [PricingID] int IDENTITY(1,1) NOT NULL,
-    [CostPerNight] int  NOT NULL,
+    [CostPerNight] float  NOT NULL,
     [StartDate] datetime  NOT NULL,
     [EndDate] datetime  NOT NULL,
     [IsObsolete] bit  NOT NULL,

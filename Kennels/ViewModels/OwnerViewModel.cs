@@ -81,7 +81,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                Owner ownr = _context.Owners.Where(o => o.OwnerID == owner.OwnerID).FirstOrDefault();
+                Owner ownr = _context.Owners.Where(o => o.Equals(owner)).FirstOrDefault();
 
                 ownr.IsObsolete = true;
 
@@ -114,7 +114,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                return _context.Animals.Where(o => o.Owner.OwnerID == owner.OwnerID).ToList();
+                return _context.Animals.Where(o => o.Owner.Equals(owner)).ToList();
             }
             catch (Exception)
             {
@@ -129,7 +129,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                return _context.Bookings.Where(o => o.Owner.OwnerID == owner.OwnerID).ToList();
+                return _context.Bookings.Where(o => o.Owner.Equals(owner)).ToList();
             }
             catch (Exception)
             {
@@ -196,7 +196,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                Owner ownr = _context.Owners.Where(o => o.OwnerID == owner.OwnerID).FirstOrDefault();
+                Owner ownr = _context.Owners.Where(o => o.Equals(owner)).FirstOrDefault();
 
                 ownr.FirstName = firstName;
                 ownr.Surname = surname;

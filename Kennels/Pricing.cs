@@ -15,7 +15,7 @@ namespace Kennels
     public partial class Pricing
     {
         public int PricingID { get; set; }
-        public int CostPerNight { get; set; }
+        public double CostPerNight { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public bool IsObsolete { get; set; }
