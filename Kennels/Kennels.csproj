@@ -73,9 +73,6 @@
     <Compile Include="Booking.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BookingPenAnimal.cs">
-      <DependentUpon>KennelsModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Cat.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +97,7 @@
     <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IBird.cs" />
     <Compile Include="Interfaces\IBirdSpecies.cs" />
+    <Compile Include="Interfaces\IBooking.cs" />
     <Compile Include="Interfaces\ICat.cs" />
     <Compile Include="Interfaces\IDiscount.cs" />
     <Compile Include="Interfaces\IDog.cs" />

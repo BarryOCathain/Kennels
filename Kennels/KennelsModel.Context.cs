@@ -34,7 +34,6 @@ namespace Kennels
         public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<DogBreed> DogBreeds { get; set; }
         public virtual DbSet<BirdSpecies> BirdSpecies { get; set; }
-        public virtual DbSet<BookingPenAnimal> BookingPenAnimals { get; set; }
         public virtual DbSet<PaymentType> PaymentTypes { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }

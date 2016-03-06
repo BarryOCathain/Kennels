@@ -17,9 +17,9 @@ namespace Kennels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Booking()
         {
-            this.BookingPenAnimals = new HashSet<BookingPenAnimal>();
             this.Payments = new HashSet<Payment>();
             this.Discounts = new HashSet<Discount>();
+            this.Pens = new HashSet<Pen>();
         }
     
         public int BookingID { get; set; }
@@ -30,12 +30,12 @@ namespace Kennels
         public string CreatedBy { get; set; }
         public System.DateTime CreatedDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingPenAnimal> BookingPenAnimals { get; set; }
         public virtual Owner Owner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Discount> Discounts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pen> Pens { get; set; }
     }
 }

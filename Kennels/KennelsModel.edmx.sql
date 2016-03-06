@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2016 22:40:29
+-- Date Created: 03/06/2016 15:39:32
 -- Generated from EDMX file: C:\Users\arcan\Source\Repos\Kennels\Kennels\KennelsModel.edmx
 -- --------------------------------------------------
 
@@ -38,17 +38,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_AnimalKennel]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Kennels] DROP CONSTRAINT [FK_AnimalKennel];
 GO
-IF OBJECT_ID(N'[dbo].[FK_BookingBookingPenAnimal]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[BookingPenAnimals] DROP CONSTRAINT [FK_BookingBookingPenAnimal];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AnimalBookingPenAnimal]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[BookingPenAnimals] DROP CONSTRAINT [FK_AnimalBookingPenAnimal];
-GO
 IF OBJECT_ID(N'[dbo].[FK_OwnerBooking]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Bookings] DROP CONSTRAINT [FK_OwnerBooking];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PenBookingPenAnimal]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[BookingPenAnimals] DROP CONSTRAINT [FK_PenBookingPenAnimal];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PaymentTypePayment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Payments] DROP CONSTRAINT [FK_PaymentTypePayment];
@@ -105,9 +96,6 @@ IF OBJECT_ID(N'[dbo].[DogBreeds]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[BirdSpecies]', 'U') IS NOT NULL
     DROP TABLE [dbo].[BirdSpecies];
-GO
-IF OBJECT_ID(N'[dbo].[BookingPenAnimals]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[BookingPenAnimals];
 GO
 IF OBJECT_ID(N'[dbo].[PaymentTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PaymentTypes];
@@ -253,16 +241,6 @@ CREATE TABLE [dbo].[BirdSpecies] (
 );
 GO
 
--- Creating table 'BookingPenAnimals'
-CREATE TABLE [dbo].[BookingPenAnimals] (
-    [BookingPenAnimalID] int IDENTITY(1,1) NOT NULL,
-    [Cost] float  NOT NULL,
-    [Booking_BookingID] int  NOT NULL,
-    [Animal_AnimalID] int  NOT NULL,
-    [Pen_PenID] int  NOT NULL
-);
-GO
-
 -- Creating table 'PaymentTypes'
 CREATE TABLE [dbo].[PaymentTypes] (
     [PaymentTypeID] int IDENTITY(1,1) NOT NULL,
@@ -342,6 +320,20 @@ CREATE TABLE [dbo].[BookingDiscount] (
 );
 GO
 
+-- Creating table 'AnimalPen'
+CREATE TABLE [dbo].[AnimalPen] (
+    [Animals_AnimalID] int  NOT NULL,
+    [Pens_PenID] int  NOT NULL
+);
+GO
+
+-- Creating table 'BookingPen'
+CREATE TABLE [dbo].[BookingPen] (
+    [Bookings_BookingID] int  NOT NULL,
+    [Pens_PenID] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -400,12 +392,6 @@ ADD CONSTRAINT [PK_BirdSpecies]
     PRIMARY KEY CLUSTERED ([BirdSpeciesID] ASC);
 GO
 
--- Creating primary key on [BookingPenAnimalID] in table 'BookingPenAnimals'
-ALTER TABLE [dbo].[BookingPenAnimals]
-ADD CONSTRAINT [PK_BookingPenAnimals]
-    PRIMARY KEY CLUSTERED ([BookingPenAnimalID] ASC);
-GO
-
 -- Creating primary key on [PaymentTypeID] in table 'PaymentTypes'
 ALTER TABLE [dbo].[PaymentTypes]
 ADD CONSTRAINT [PK_PaymentTypes]
@@ -458,6 +444,18 @@ GO
 ALTER TABLE [dbo].[BookingDiscount]
 ADD CONSTRAINT [PK_BookingDiscount]
     PRIMARY KEY CLUSTERED ([Bookings_BookingID], [Discounts_DiscountID] ASC);
+GO
+
+-- Creating primary key on [Animals_AnimalID], [Pens_PenID] in table 'AnimalPen'
+ALTER TABLE [dbo].[AnimalPen]
+ADD CONSTRAINT [PK_AnimalPen]
+    PRIMARY KEY CLUSTERED ([Animals_AnimalID], [Pens_PenID] ASC);
+GO
+
+-- Creating primary key on [Bookings_BookingID], [Pens_PenID] in table 'BookingPen'
+ALTER TABLE [dbo].[BookingPen]
+ADD CONSTRAINT [PK_BookingPen]
+    PRIMARY KEY CLUSTERED ([Bookings_BookingID], [Pens_PenID] ASC);
 GO
 
 -- --------------------------------------------------
@@ -569,36 +567,6 @@ ON [dbo].[Kennels]
     ([Animal_AnimalID]);
 GO
 
--- Creating foreign key on [Booking_BookingID] in table 'BookingPenAnimals'
-ALTER TABLE [dbo].[BookingPenAnimals]
-ADD CONSTRAINT [FK_BookingBookingPenAnimal]
-    FOREIGN KEY ([Booking_BookingID])
-    REFERENCES [dbo].[Bookings]
-        ([BookingID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_BookingBookingPenAnimal'
-CREATE INDEX [IX_FK_BookingBookingPenAnimal]
-ON [dbo].[BookingPenAnimals]
-    ([Booking_BookingID]);
-GO
-
--- Creating foreign key on [Animal_AnimalID] in table 'BookingPenAnimals'
-ALTER TABLE [dbo].[BookingPenAnimals]
-ADD CONSTRAINT [FK_AnimalBookingPenAnimal]
-    FOREIGN KEY ([Animal_AnimalID])
-    REFERENCES [dbo].[Animals]
-        ([AnimalID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AnimalBookingPenAnimal'
-CREATE INDEX [IX_FK_AnimalBookingPenAnimal]
-ON [dbo].[BookingPenAnimals]
-    ([Animal_AnimalID]);
-GO
-
 -- Creating foreign key on [Owner_OwnerID] in table 'Bookings'
 ALTER TABLE [dbo].[Bookings]
 ADD CONSTRAINT [FK_OwnerBooking]
@@ -612,21 +580,6 @@ GO
 CREATE INDEX [IX_FK_OwnerBooking]
 ON [dbo].[Bookings]
     ([Owner_OwnerID]);
-GO
-
--- Creating foreign key on [Pen_PenID] in table 'BookingPenAnimals'
-ALTER TABLE [dbo].[BookingPenAnimals]
-ADD CONSTRAINT [FK_PenBookingPenAnimal]
-    FOREIGN KEY ([Pen_PenID])
-    REFERENCES [dbo].[Pens]
-        ([PenID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PenBookingPenAnimal'
-CREATE INDEX [IX_FK_PenBookingPenAnimal]
-ON [dbo].[BookingPenAnimals]
-    ([Pen_PenID]);
 GO
 
 -- Creating foreign key on [PaymentType_PaymentTypeID] in table 'Payments'
@@ -681,6 +634,54 @@ GO
 CREATE INDEX [IX_FK_BookingDiscount_Discount]
 ON [dbo].[BookingDiscount]
     ([Discounts_DiscountID]);
+GO
+
+-- Creating foreign key on [Animals_AnimalID] in table 'AnimalPen'
+ALTER TABLE [dbo].[AnimalPen]
+ADD CONSTRAINT [FK_AnimalPen_Animal]
+    FOREIGN KEY ([Animals_AnimalID])
+    REFERENCES [dbo].[Animals]
+        ([AnimalID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Pens_PenID] in table 'AnimalPen'
+ALTER TABLE [dbo].[AnimalPen]
+ADD CONSTRAINT [FK_AnimalPen_Pen]
+    FOREIGN KEY ([Pens_PenID])
+    REFERENCES [dbo].[Pens]
+        ([PenID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AnimalPen_Pen'
+CREATE INDEX [IX_FK_AnimalPen_Pen]
+ON [dbo].[AnimalPen]
+    ([Pens_PenID]);
+GO
+
+-- Creating foreign key on [Bookings_BookingID] in table 'BookingPen'
+ALTER TABLE [dbo].[BookingPen]
+ADD CONSTRAINT [FK_BookingPen_Booking]
+    FOREIGN KEY ([Bookings_BookingID])
+    REFERENCES [dbo].[Bookings]
+        ([BookingID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Pens_PenID] in table 'BookingPen'
+ALTER TABLE [dbo].[BookingPen]
+ADD CONSTRAINT [FK_BookingPen_Pen]
+    FOREIGN KEY ([Pens_PenID])
+    REFERENCES [dbo].[Pens]
+        ([PenID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BookingPen_Pen'
+CREATE INDEX [IX_FK_BookingPen_Pen]
+ON [dbo].[BookingPen]
+    ([Pens_PenID]);
 GO
 
 -- Creating foreign key on [AnimalID] in table 'Animals_Dog'

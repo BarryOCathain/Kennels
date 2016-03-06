@@ -20,7 +20,7 @@ namespace Kennels
             this.Pricings = new HashSet<Pricing>();
             this.Notes = new HashSet<Note>();
             this.Kennels = new HashSet<Kennel>();
-            this.BookingPenAnimals = new HashSet<BookingPenAnimal>();
+            this.Pens = new HashSet<Pen>();
         }
     
         public int AnimalID { get; set; }
@@ -39,6 +39,6 @@ namespace Kennels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kennel> Kennels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingPenAnimal> BookingPenAnimals { get; set; }
+        public virtual ICollection<Pen> Pens { get; set; }
     }
 }

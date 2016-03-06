@@ -15,7 +15,6 @@
     <EntitySet Name="Owners" EntityType="KennelsModel.Store.Owners" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DogBreeds" EntityType="KennelsModel.Store.DogBreeds" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BirdSpecies" EntityType="KennelsModel.Store.BirdSpecies" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="BookingPenAnimals" EntityType="KennelsModel.Store.BookingPenAnimals" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PaymentTypes" EntityType="KennelsModel.Store.PaymentTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Payments" EntityType="KennelsModel.Store.Payments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Discounts" EntityType="KennelsModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
@@ -25,6 +24,8 @@
     <EntitySet Name="Animals_Cat" EntityType="KennelsModel.Store.Animals_Cat" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Animals_Hamster" EntityType="KennelsModel.Store.Animals_Hamster" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="BookingDiscount" EntityType="KennelsModel.Store.BookingDiscount" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AnimalPen" EntityType="KennelsModel.Store.AnimalPen" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookingPen" EntityType="KennelsModel.Store.BookingPen" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PricingAnimal" Association="KennelsModel.Store.PricingAnimal">
       <End Role="Pricing" EntitySet="Pricings" />
       <End Role="Animal" EntitySet="Animals" />
@@ -53,21 +54,9 @@
       <End Role="Animal" EntitySet="Animals" />
       <End Role="Kennel" EntitySet="Kennels" />
     </AssociationSet>
-    <AssociationSet Name="BookingBookingPenAnimal" Association="KennelsModel.Store.BookingBookingPenAnimal">
-      <End Role="Booking" EntitySet="Bookings" />
-      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
-    </AssociationSet>
-    <AssociationSet Name="AnimalBookingPenAnimal" Association="KennelsModel.Store.AnimalBookingPenAnimal">
-      <End Role="Animal" EntitySet="Animals" />
-      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
-    </AssociationSet>
     <AssociationSet Name="OwnerBooking" Association="KennelsModel.Store.OwnerBooking">
       <End Role="Owner" EntitySet="Owners" />
       <End Role="Booking" EntitySet="Bookings" />
-    </AssociationSet>
-    <AssociationSet Name="PenBookingPenAnimal" Association="KennelsModel.Store.PenBookingPenAnimal">
-      <End Role="Pen" EntitySet="Pens" />
-      <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
     </AssociationSet>
     <AssociationSet Name="PaymentTypePayment" Association="KennelsModel.Store.PaymentTypePayment">
       <End Role="PaymentType" EntitySet="PaymentTypes" />
@@ -84,6 +73,22 @@
     <AssociationSet Name="FK_BookingDiscount_Discount" Association="KennelsModel.Store.FK_BookingDiscount_Discount">
       <End Role="Discount" EntitySet="Discounts" />
       <End Role="BookingDiscount" EntitySet="BookingDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnimalPen_Animal" Association="KennelsModel.Store.FK_AnimalPen_Animal">
+      <End Role="Animal" EntitySet="Animals" />
+      <End Role="AnimalPen" EntitySet="AnimalPen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnimalPen_Pen" Association="KennelsModel.Store.FK_AnimalPen_Pen">
+      <End Role="Pen" EntitySet="Pens" />
+      <End Role="AnimalPen" EntitySet="AnimalPen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingPen_Booking" Association="KennelsModel.Store.FK_BookingPen_Booking">
+      <End Role="Booking" EntitySet="Bookings" />
+      <End Role="BookingPen" EntitySet="BookingPen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingPen_Pen" Association="KennelsModel.Store.FK_BookingPen_Pen">
+      <End Role="Pen" EntitySet="Pens" />
+      <End Role="BookingPen" EntitySet="BookingPen" />
     </AssociationSet>
     <AssociationSet Name="FK_Dog_inherits_Animal" Association="KennelsModel.Store.FK_Dog_inherits_Animal">
       <End Role="Animal" EntitySet="Animals" />
@@ -214,16 +219,6 @@
     <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="BookingPenAnimals">
-    <Key>
-      <PropertyRef Name="BookingPenAnimalID" />
-    </Key>
-    <Property Name="BookingPenAnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Cost" Type="float" Nullable="false" />
-    <Property Name="Booking_BookingID" Type="int" Nullable="false" />
-    <Property Name="Animal_AnimalID" Type="int" Nullable="false" />
-    <Property Name="Pen_PenID" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="PaymentTypes">
     <Key>
       <PropertyRef Name="PaymentTypeID" />
@@ -303,6 +298,22 @@
     </Key>
     <Property Name="Bookings_BookingID" Type="int" Nullable="false" />
     <Property Name="Discounts_DiscountID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnimalPen">
+    <Key>
+      <PropertyRef Name="Animals_AnimalID" />
+      <PropertyRef Name="Pens_PenID" />
+    </Key>
+    <Property Name="Animals_AnimalID" Type="int" Nullable="false" />
+    <Property Name="Pens_PenID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingPen">
+    <Key>
+      <PropertyRef Name="Bookings_BookingID" />
+      <PropertyRef Name="Pens_PenID" />
+    </Key>
+    <Property Name="Bookings_BookingID" Type="int" Nullable="false" />
+    <Property Name="Pens_PenID" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PricingAnimal">
     <End Role="Pricing" Type="KennelsModel.Store.Pricings" Multiplicity="*" />
@@ -388,30 +399,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="BookingBookingPenAnimal">
-    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="1" />
-    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Booking">
-        <PropertyRef Name="BookingID" />
-      </Principal>
-      <Dependent Role="BookingPenAnimal">
-        <PropertyRef Name="Booking_BookingID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AnimalBookingPenAnimal">
-    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
-    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Animal">
-        <PropertyRef Name="AnimalID" />
-      </Principal>
-      <Dependent Role="BookingPenAnimal">
-        <PropertyRef Name="Animal_AnimalID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="OwnerBooking">
     <End Role="Owner" Type="KennelsModel.Store.Owners" Multiplicity="1" />
     <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="*" />
@@ -421,18 +408,6 @@
       </Principal>
       <Dependent Role="Booking">
         <PropertyRef Name="Owner_OwnerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PenBookingPenAnimal">
-    <End Role="Pen" Type="KennelsModel.Store.Pens" Multiplicity="1" />
-    <End Role="BookingPenAnimal" Type="KennelsModel.Store.BookingPenAnimals" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pen">
-        <PropertyRef Name="PenID" />
-      </Principal>
-      <Dependent Role="BookingPenAnimal">
-        <PropertyRef Name="Pen_PenID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -481,6 +456,54 @@
       </Principal>
       <Dependent Role="BookingDiscount">
         <PropertyRef Name="Discounts_DiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnimalPen_Animal">
+    <End Role="Animal" Type="KennelsModel.Store.Animals" Multiplicity="1" />
+    <End Role="AnimalPen" Type="KennelsModel.Store.AnimalPen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalID" />
+      </Principal>
+      <Dependent Role="AnimalPen">
+        <PropertyRef Name="Animals_AnimalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnimalPen_Pen">
+    <End Role="AnimalPen" Type="KennelsModel.Store.AnimalPen" Multiplicity="*" />
+    <End Role="Pen" Type="KennelsModel.Store.Pens" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pen">
+        <PropertyRef Name="PenID" />
+      </Principal>
+      <Dependent Role="AnimalPen">
+        <PropertyRef Name="Pens_PenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingPen_Booking">
+    <End Role="Booking" Type="KennelsModel.Store.Bookings" Multiplicity="1" />
+    <End Role="BookingPen" Type="KennelsModel.Store.BookingPen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingPen">
+        <PropertyRef Name="Bookings_BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingPen_Pen">
+    <End Role="BookingPen" Type="KennelsModel.Store.BookingPen" Multiplicity="*" />
+    <End Role="Pen" Type="KennelsModel.Store.Pens" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pen">
+        <PropertyRef Name="PenID" />
+      </Principal>
+      <Dependent Role="BookingPen">
+        <PropertyRef Name="Pens_PenID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -582,22 +605,9 @@
             <End Role="Animal" EntitySet="Animals" />
             <End Role="Kennel" EntitySet="Kennels" />
           </AssociationSet>
-          <EntitySet Name="BookingPenAnimals" EntityType="KennelsModel.BookingPenAnimal" />
-          <AssociationSet Name="BookingBookingPenAnimal" Association="KennelsModel.BookingBookingPenAnimal">
-            <End Role="Booking" EntitySet="Bookings" />
-            <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
-          </AssociationSet>
-          <AssociationSet Name="AnimalBookingPenAnimal" Association="KennelsModel.AnimalBookingPenAnimal">
-            <End Role="Animal" EntitySet="Animals" />
-            <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
-          </AssociationSet>
           <AssociationSet Name="OwnerBooking" Association="KennelsModel.OwnerBooking">
             <End Role="Owner" EntitySet="Owners" />
             <End Role="Booking" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="PenBookingPenAnimal" Association="KennelsModel.PenBookingPenAnimal">
-            <End Role="Pen" EntitySet="Pens" />
-            <End Role="BookingPenAnimal" EntitySet="BookingPenAnimals" />
           </AssociationSet>
           <EntitySet Name="PaymentTypes" EntityType="KennelsModel.PaymentType" />
           <EntitySet Name="Payments" EntityType="KennelsModel.Payment" />
@@ -615,6 +625,14 @@
             <End Role="Discount" EntitySet="Discounts" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="KennelsModel.User" />
+          <AssociationSet Name="AnimalPen" Association="KennelsModel.AnimalPen">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="Pen" EntitySet="Pens" />
+          </AssociationSet>
+          <AssociationSet Name="BookingPen" Association="KennelsModel.BookingPen">
+            <End Role="Booking" EntitySet="Bookings" />
+            <End Role="Pen" EntitySet="Pens" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Animal" Abstract="true">
           <Key>
@@ -631,7 +649,7 @@
           <Property Name="IsMale" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Owner" Relationship="KennelsModel.AnimalOwner" FromRole="Animal" ToRole="Owner" />
           <NavigationProperty Name="Kennels" Relationship="KennelsModel.AnimalKennel" FromRole="Animal" ToRole="Kennel" />
-          <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.AnimalBookingPenAnimal" FromRole="Animal" ToRole="BookingPenAnimal" />
+          <NavigationProperty Name="Pens" Relationship="KennelsModel.AnimalPen" FromRole="Animal" ToRole="Pen" />
         </EntityType>
         <EntityType Name="Pricing">
           <Key>
@@ -661,7 +679,8 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="Capacity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kennel" Relationship="KennelsModel.KennelPen" FromRole="Pen" ToRole="Kennel" />
-          <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.PenBookingPenAnimal" FromRole="Pen" ToRole="BookingPenAnimal" />
+          <NavigationProperty Name="Animals" Relationship="KennelsModel.AnimalPen" FromRole="Pen" ToRole="Animal" />
+          <NavigationProperty Name="Bookings" Relationship="KennelsModel.BookingPen" FromRole="Pen" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Kennel">
           <Key>
@@ -698,13 +717,13 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" />
           <Property Name="Cost" Type="Double" Nullable="false" />
-          <NavigationProperty Name="BookingPenAnimals" Relationship="KennelsModel.BookingBookingPenAnimal" FromRole="Booking" ToRole="BookingPenAnimal" />
           <NavigationProperty Name="Owner" Relationship="KennelsModel.OwnerBooking" FromRole="Booking" ToRole="Owner" />
           <NavigationProperty Name="Payments" Relationship="KennelsModel.BookingPayment" FromRole="Booking" ToRole="Payment" />
           <Property Name="IsObsolete" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Discounts" Relationship="KennelsModel.BookingDiscount" FromRole="Booking" ToRole="Discount" />
+          <NavigationProperty Name="Pens" Relationship="KennelsModel.BookingPen" FromRole="Booking" ToRole="Pen" />
         </EntityType>
         <EntityType Name="Owner">
           <Key>
@@ -779,31 +798,9 @@
           <End Type="KennelsModel.Animal" Role="Animal" Multiplicity="1" />
           <End Type="KennelsModel.Kennel" Role="Kennel" Multiplicity="*" />
         </Association>
-        <EntityType Name="BookingPenAnimal">
-          <Key>
-            <PropertyRef Name="BookingPenAnimalID" />
-          </Key>
-          <NavigationProperty Name="Booking" Relationship="KennelsModel.BookingBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Booking" />
-          <NavigationProperty Name="Animal" Relationship="KennelsModel.AnimalBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Animal" />
-          <NavigationProperty Name="Pen" Relationship="KennelsModel.PenBookingPenAnimal" FromRole="BookingPenAnimal" ToRole="Pen" />
-          <Property Name="BookingPenAnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cost" Type="Double" Nullable="false" />
-        </EntityType>
-        <Association Name="BookingBookingPenAnimal">
-          <End Type="KennelsModel.Booking" Role="Booking" Multiplicity="1" />
-          <End Type="KennelsModel.BookingPenAnimal" Role="BookingPenAnimal" Multiplicity="*" />
-        </Association>
-        <Association Name="AnimalBookingPenAnimal">
-          <End Type="KennelsModel.Animal" Role="Animal" Multiplicity="1" />
-          <End Type="KennelsModel.BookingPenAnimal" Role="BookingPenAnimal" Multiplicity="*" />
-        </Association>
         <Association Name="OwnerBooking">
           <End Type="KennelsModel.Owner" Role="Owner" Multiplicity="1" />
           <End Type="KennelsModel.Booking" Role="Booking" Multiplicity="*" />
-        </Association>
-        <Association Name="PenBookingPenAnimal">
-          <End Type="KennelsModel.Pen" Role="Pen" Multiplicity="1" />
-          <End Type="KennelsModel.BookingPenAnimal" Role="BookingPenAnimal" Multiplicity="*" />
         </Association>
         <EntityType Name="PaymentType">
           <Key>
@@ -865,6 +862,14 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
         </EntityType>
+        <Association Name="AnimalPen">
+          <End Type="KennelsModel.Animal" Role="Animal" Multiplicity="*" />
+          <End Type="KennelsModel.Pen" Role="Pen" Multiplicity="*" />
+        </Association>
+        <Association Name="BookingPen">
+          <End Type="KennelsModel.Booking" Role="Booking" Multiplicity="*" />
+          <End Type="KennelsModel.Pen" Role="Pen" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1006,14 +1011,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BookingPenAnimals">
-      <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.BookingPenAnimal)">
-        <MappingFragment StoreEntitySet="BookingPenAnimals">
-          <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
-          <ScalarProperty Name="Cost" ColumnName="Cost" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PaymentTypes">
       <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.PaymentType)">
         <MappingFragment StoreEntitySet="PaymentTypes">
@@ -1118,36 +1115,12 @@
         <ScalarProperty Name="KennelID" ColumnName="KennelID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="BookingBookingPenAnimal" TypeName="KennelsModel.BookingBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
-      <EndProperty Name="Booking">
-        <ScalarProperty Name="BookingID" ColumnName="Booking_BookingID" />
-      </EndProperty>
-      <EndProperty Name="BookingPenAnimal">
-        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="AnimalBookingPenAnimal" TypeName="KennelsModel.AnimalBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
-      <EndProperty Name="Animal">
-        <ScalarProperty Name="AnimalID" ColumnName="Animal_AnimalID" />
-      </EndProperty>
-      <EndProperty Name="BookingPenAnimal">
-        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="OwnerBooking" TypeName="KennelsModel.OwnerBooking" StoreEntitySet="Bookings">
       <EndProperty Name="Owner">
         <ScalarProperty Name="OwnerID" ColumnName="Owner_OwnerID" />
       </EndProperty>
       <EndProperty Name="Booking">
         <ScalarProperty Name="BookingID" ColumnName="BookingID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PenBookingPenAnimal" TypeName="KennelsModel.PenBookingPenAnimal" StoreEntitySet="BookingPenAnimals">
-      <EndProperty Name="Pen">
-        <ScalarProperty Name="PenID" ColumnName="Pen_PenID" />
-      </EndProperty>
-      <EndProperty Name="BookingPenAnimal">
-        <ScalarProperty Name="BookingPenAnimalID" ColumnName="BookingPenAnimalID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="PaymentTypePayment" TypeName="KennelsModel.PaymentTypePayment" StoreEntitySet="Payments">
@@ -1172,6 +1145,22 @@
       </EndProperty>
       <EndProperty Name="Discount">
         <ScalarProperty Name="DiscountID" ColumnName="Discounts_DiscountID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AnimalPen" TypeName="KennelsModel.AnimalPen" StoreEntitySet="AnimalPen">
+      <EndProperty Name="Animal">
+        <ScalarProperty Name="AnimalID" ColumnName="Animals_AnimalID" />
+      </EndProperty>
+      <EndProperty Name="Pen">
+        <ScalarProperty Name="PenID" ColumnName="Pens_PenID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BookingPen" TypeName="KennelsModel.BookingPen" StoreEntitySet="BookingPen">
+      <EndProperty Name="Booking">
+        <ScalarProperty Name="BookingID" ColumnName="Bookings_BookingID" />
+      </EndProperty>
+      <EndProperty Name="Pen">
+        <ScalarProperty Name="PenID" ColumnName="Pens_PenID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
