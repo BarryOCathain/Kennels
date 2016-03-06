@@ -103,6 +103,7 @@
     <Compile Include="Interfaces\IDiscount.cs" />
     <Compile Include="Interfaces\IDog.cs" />
     <Compile Include="Interfaces\IDogBreed.cs" />
+    <Compile Include="Interfaces\IHamster.cs" />
     <Compile Include="Interfaces\IKennel.cs" />
     <Compile Include="Interfaces\INote.cs" />
     <Compile Include="Interfaces\IOwner.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="ViewModels\DiscountViewModel.cs" />
     <Compile Include="ViewModels\DogBreedViewModel.cs" />
     <Compile Include="ViewModels\DogViewModel.cs" />
+    <Compile Include="ViewModels\HamsterViewModel.cs" />
     <Compile Include="ViewModels\KennelViewModel.cs" />
     <Compile Include="ViewModels\NoteViewModel.cs" />
     <Compile Include="ViewModels\OwnerViewModel.cs" />
