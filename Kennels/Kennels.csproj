@@ -97,6 +97,7 @@
     <Compile Include="Hamster.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IBird.cs" />
     <Compile Include="Interfaces\IBirdSpecies.cs" />
     <Compile Include="Interfaces\ICat.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="User.cs">
       <DependentUpon>KennelsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AnimalViewModel.cs" />
     <Compile Include="ViewModels\BirdSpeciesViewModel.cs" />
     <Compile Include="ViewModels\BirdViewModel.cs" />
     <Compile Include="ViewModels\CatViewModel.cs" />
