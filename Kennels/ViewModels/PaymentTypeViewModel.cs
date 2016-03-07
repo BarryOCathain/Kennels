@@ -86,7 +86,7 @@ namespace Kennels.ViewModels
             }
         }
 
-        public PaymentType GetPAymentTypeByName(string name)
+        public PaymentType GetPaymentTypeByName(string name)
         {
             try
             {

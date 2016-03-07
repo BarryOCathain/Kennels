@@ -104,6 +104,7 @@
     <Compile Include="Interfaces\IDogBreed.cs" />
     <Compile Include="Interfaces\IHamster.cs" />
     <Compile Include="Interfaces\IKennel.cs" />
+    <Compile Include="Interfaces\ILogin.cs" />
     <Compile Include="Interfaces\INote.cs" />
     <Compile Include="Interfaces\IOwner.cs" />
     <Compile Include="Interfaces\IPayment.cs" />
@@ -155,12 +156,14 @@
     <Compile Include="ViewModels\AnimalViewModel.cs" />
     <Compile Include="ViewModels\BirdSpeciesViewModel.cs" />
     <Compile Include="ViewModels\BirdViewModel.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
     <Compile Include="ViewModels\CatViewModel.cs" />
     <Compile Include="ViewModels\DiscountViewModel.cs" />
     <Compile Include="ViewModels\DogBreedViewModel.cs" />
     <Compile Include="ViewModels\DogViewModel.cs" />
     <Compile Include="ViewModels\HamsterViewModel.cs" />
     <Compile Include="ViewModels\KennelViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NoteViewModel.cs" />
     <Compile Include="ViewModels\OwnerViewModel.cs" />
     <Compile Include="ViewModels\PaymentTypeViewModel.cs" />
@@ -168,6 +171,18 @@
     <Compile Include="ViewModels\PenViewModel.cs" />
     <Compile Include="ViewModels\PricingViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Windows\PaymentTypeWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\PaymentTypeWindow.Designer.cs">
+      <DependentUpon>PaymentTypeWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoginWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\LoginWindow.Designer.cs">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -177,6 +192,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Windows\PaymentTypeWindow.resx">
+      <DependentUpon>PaymentTypeWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\LoginWindow.resx">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="KennelsModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>KennelsModel.Designer.cs</LastGenOutput>
@@ -214,9 +235,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,7 +14,7 @@ namespace Kennels.Interfaces
 
         List<PaymentType> GetAllPaymentTypes();
 
-        PaymentType GetPAymentTypeByName(string name);
+        PaymentType GetPaymentTypeByName(string name);
 
         List<Payment> GetPaymentsByPaymentType(PaymentType paymentType);
     }

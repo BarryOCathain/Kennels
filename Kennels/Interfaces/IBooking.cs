@@ -8,7 +8,7 @@ namespace Kennels.Interfaces
 {
     interface IBooking
     {
-        Booking AddBooking(DateTime startDate, DateTime endDate, double cost, User createdBy, Owner owner);
+        Booking AddBooking(DateTime startDate, DateTime endDate, User createdBy, Owner owner);
 
         bool DeleteBooking(Booking booking);
 
@@ -18,7 +18,7 @@ namespace Kennels.Interfaces
 
         void CalculateCost(Booking booking);
 
-        void RemoveAnimalFromBookingPen(Booking booking, Pen pen, Animal animal);
+        void RemoveAnimalFromBooking(Booking booking, Animal animal);
 
         void RemovePenFromBooking(Booking booking, Pen pen);
 
@@ -26,6 +26,8 @@ namespace Kennels.Interfaces
 
         List<Booking> GetAllActiveBookings();
 
-        List<Booking> GetAllDeletedBOokings();
+        List<Booking> GetAllDeletedBookings();
+
+        List<Pen> GetAvailablePens(DateTime startDate, DateTime endDate);
     }
 }
