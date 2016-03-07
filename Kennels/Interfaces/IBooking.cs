@@ -22,6 +22,10 @@ namespace Kennels.Interfaces
 
         void RemovePenFromBooking(Booking booking, Pen pen);
 
+        List<Booking> GetAllBookings();
 
+        List<Booking> GetAllActiveBookings();
+
+        List<Booking> GetAllDeletedBOokings();
     }
 }
