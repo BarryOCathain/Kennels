@@ -6,12 +6,7 @@ namespace Kennels.Common
 {
     public static class CommonUtilities
     {
-        public static void AddControlEventHandlers(Form form)
-        {
-            RecursiveLoopControls(form);
-        }
-
-
+        #region Public Methods
         public static void RecursiveLoopControls(Control ctrl)
         {
             foreach (Control _ctrl in ctrl.Controls)
@@ -22,7 +17,7 @@ namespace Kennels.Common
 
                     if (tb != null)
                     {
-                        tb.TextChanged += new EventHandler((sender, eventArgs) => ValidateTextBox(tb)); 
+                        tb.TextChanged += new EventHandler((sender, eventArgs) => ValidateTextBox(tb));
                     }
                 }
                 else if (_ctrl.GetType() == typeof(ComboBox))
@@ -39,6 +34,22 @@ namespace Kennels.Common
             }
         }
 
+        public static byte[] ImageToByteArray(Image img)
+        {
+            ImageConverter converter = new ImageConverter();
+
+            return (byte[])converter.ConvertTo(img, typeof(byte[]));
+        }
+
+        public static Image ByteArrayToImage(byte[] bytes)
+        {
+            ImageConverter converter = new ImageConverter();
+
+            return (Image)converter.ConvertFrom(bytes);
+        }
+        #endregion
+
+        #region Helper Methods
         public static void ValidateTextBox(TextBox ctrl)
         {
             if (string.IsNullOrEmpty(ctrl.Text))
@@ -53,6 +64,7 @@ namespace Kennels.Common
                 ctrl.BackColor = Color.Red;
             else
                 ctrl.BackColor = Color.Empty;
-        }
+        } 
+        #endregion
     }
 }

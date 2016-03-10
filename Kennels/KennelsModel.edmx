@@ -118,6 +118,7 @@
     <Property Name="CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="IsMale" Type="bit" Nullable="false" />
+    <Property Name="Image" Type="varbinary(max)" Nullable="false" />
     <Property Name="Owner_OwnerID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Pricings">
@@ -650,6 +651,7 @@
           <NavigationProperty Name="Owner" Relationship="KennelsModel.AnimalOwner" FromRole="Animal" ToRole="Owner" />
           <NavigationProperty Name="Kennels" Relationship="KennelsModel.AnimalKennel" FromRole="Animal" ToRole="Kennel" />
           <NavigationProperty Name="Pens" Relationship="KennelsModel.AnimalPen" FromRole="Animal" ToRole="Pen" />
+          <Property Name="Image" Type="Binary" Nullable="false" />
         </EntityType>
         <EntityType Name="Pricing">
           <Key>
@@ -886,6 +888,7 @@
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(KennelsModel.Dog)">

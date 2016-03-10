@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Kennels.Interfaces
 {
     interface IHamster
     {
-        Hamster AddHamster(string name, int age, User createdBy, bool isMale, Owner owner);
+        Hamster AddHamster(string name, int age, User createdBy, bool isMale, Image img, Owner owner);
 
         bool DeleteHamster(Hamster hamster);
 

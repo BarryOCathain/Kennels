@@ -21,7 +21,7 @@ namespace Kennels
             if (lw.ShowDialog() == DialogResult.OK)
             {
                 User = lw.User;
-                Application.Run(new PaymentTypeWindow());
+                Application.Run(new MainMDIWindow());
             }
         }
     }

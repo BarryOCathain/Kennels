@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/06/2016 15:39:32
--- Generated from EDMX file: C:\Users\arcan\Source\Repos\Kennels\Kennels\KennelsModel.edmx
+-- Date Created: 03/10/2016 13:32:08
+-- Generated from EDMX file: C:\Users\DynamicDuo\Source\Repos\Kennels\Kennels\KennelsModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -52,6 +52,18 @@ IF OBJECT_ID(N'[dbo].[FK_BookingDiscount_Booking]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_BookingDiscount_Discount]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[BookingDiscount] DROP CONSTRAINT [FK_BookingDiscount_Discount];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AnimalPen_Animal]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnimalPen] DROP CONSTRAINT [FK_AnimalPen_Animal];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AnimalPen_Pen]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AnimalPen] DROP CONSTRAINT [FK_AnimalPen_Pen];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BookingPen_Booking]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BookingPen] DROP CONSTRAINT [FK_BookingPen_Booking];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BookingPen_Pen]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BookingPen] DROP CONSTRAINT [FK_BookingPen_Pen];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Dog_inherits_Animal]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Animals_Dog] DROP CONSTRAINT [FK_Dog_inherits_Animal];
@@ -124,6 +136,12 @@ GO
 IF OBJECT_ID(N'[dbo].[BookingDiscount]', 'U') IS NOT NULL
     DROP TABLE [dbo].[BookingDiscount];
 GO
+IF OBJECT_ID(N'[dbo].[AnimalPen]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AnimalPen];
+GO
+IF OBJECT_ID(N'[dbo].[BookingPen]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BookingPen];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -138,6 +156,7 @@ CREATE TABLE [dbo].[Animals] (
     [CreatedBy] nvarchar(max)  NOT NULL,
     [CreatedDate] datetime  NOT NULL,
     [IsMale] bit  NOT NULL,
+    [Image] varbinary(max)  NOT NULL,
     [Owner_OwnerID] int  NOT NULL
 );
 GO

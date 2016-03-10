@@ -172,6 +172,12 @@
     <Compile Include="ViewModels\PenViewModel.cs" />
     <Compile Include="ViewModels\PricingViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Windows\MainMDIWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MainMDIWindow.Designer.cs">
+      <DependentUpon>MainMDIWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PaymentTypeWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,7 +198,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Windows\MainMDIWindow.resx">
+      <DependentUpon>MainMDIWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\PaymentTypeWindow.resx">
       <DependentUpon>PaymentTypeWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,11 +242,14 @@
       <LastGenOutput>KennelsModel.cs</LastGenOutput>
       <DependentUpon>KennelsModel.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\NoImage.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

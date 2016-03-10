@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Kennels.Interfaces;
+using System.Drawing;
+using Kennels.Properties;
+using Kennels.Common;
 
 namespace Kennels.ViewModels
 {
@@ -16,7 +17,7 @@ namespace Kennels.ViewModels
             _context = context;
         }
 
-        public Hamster AddHamster(string name, int age, User createdBy, bool isMale, Owner owner)
+        public Hamster AddHamster(string name, int age, User createdBy, bool isMale, Image img, Owner owner)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("New Hamster Name not specified.");
@@ -38,6 +39,7 @@ namespace Kennels.ViewModels
                 CreatedBy = createdBy.Name,
                 CreatedDate = DateTime.Now,
                 IsMale = isMale,
+                Image = CommonUtilities.ImageToByteArray(img == null ? Resources.NoImage : img),
                 Owner = owner
             };
 

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Kennels.Interfaces;
+using System.Drawing;
+using Kennels.Common;
+using Kennels.Properties;
 
 namespace Kennels.ViewModels
 {
@@ -16,7 +19,7 @@ namespace Kennels.ViewModels
             _context = context;
         }
 
-        public Bird AddBird(string name, int age, BirdSpecies species, User createdBy, bool isMale, Owner owner)
+        public Bird AddBird(string name, int age, BirdSpecies species, User createdBy, bool isMale, Image img, Owner owner)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("New Bird Name not specified.");
@@ -41,6 +44,7 @@ namespace Kennels.ViewModels
                 CreatedBy = createdBy.Name,
                 CreatedDate = DateTime.Now,
                 IsMale = isMale,
+                Image = CommonUtilities.ImageToByteArray(img == null ? Resources.NoImage : img),
                 Owner = owner,
                 BirdSpecy = species
             };

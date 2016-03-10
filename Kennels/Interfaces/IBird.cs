@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Kennels.Interfaces
 {
     interface IBird
     {
-        Bird AddBird(string name, int age, BirdSpecies species, User createdBy, bool isMale, Owner owner);
+        Bird AddBird(string name, int age, BirdSpecies species, User createdBy, bool isMale, Image img, Owner owner);
 
         bool DeleteBird(Bird bird);
 
