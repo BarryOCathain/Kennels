@@ -25,7 +25,7 @@ namespace Kennels.Windows
         {
             try
             {
-                User = login.LoginUser(usernameTextBox.Text, passwordTextBox.Text);
+                User = login.LoginUser(usernameTextBox.Text.ToUpper(), passwordTextBox.Text);
                 this.DialogResult = DialogResult.OK;
             }
             catch (ArgumentException ex)

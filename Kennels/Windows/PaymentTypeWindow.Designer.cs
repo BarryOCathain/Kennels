@@ -36,25 +36,29 @@
             // 
             // paymentTypeTextBox
             // 
-            this.paymentTypeTextBox.Location = new System.Drawing.Point(132, 19);
+            this.paymentTypeTextBox.Location = new System.Drawing.Point(88, 12);
+            this.paymentTypeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.paymentTypeTextBox.Name = "paymentTypeTextBox";
-            this.paymentTypeTextBox.Size = new System.Drawing.Size(130, 26);
+            this.paymentTypeTextBox.Size = new System.Drawing.Size(88, 20);
             this.paymentTypeTextBox.TabIndex = 0;
+            this.paymentTypeTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.paymentTypeTextBox_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 22);
+            this.label1.Location = new System.Drawing.Point(9, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 20);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Payment Type:";
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(17, 56);
+            this.saveButton.Location = new System.Drawing.Point(11, 36);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 37);
+            this.saveButton.Size = new System.Drawing.Size(50, 24);
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -62,25 +66,27 @@
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(187, 56);
+            this.closeButton.Location = new System.Drawing.Point(125, 36);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(75, 37);
+            this.closeButton.Size = new System.Drawing.Size(50, 24);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // PaymentType
+            // PaymentTypeWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 111);
+            this.ClientSize = new System.Drawing.Size(186, 72);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.paymentTypeTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "PaymentType";
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "PaymentTypeWindow";
             this.Text = "PaymentType";
             this.ResumeLayout(false);
             this.PerformLayout();
