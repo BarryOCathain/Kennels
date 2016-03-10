@@ -35,7 +35,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return n;
         }
@@ -52,61 +52,49 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Note> GetAllActiveNotes()
         {
-            try
-            {
-                return _context.Notes.Where(n => n.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Notes.Where(n => n.IsObsolete == false).ToList();
         }
 
         public List<Note> GetAllDeletedNotes()
         {
-            try
-            {
-                return _context.Notes.Where(n => n.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Notes.Where(n => n.IsObsolete == true).ToList();
         }
 
         public List<Note> GetAllNotes()
         {
-            try
-            {
-                return _context.Notes.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Notes.ToList();
         }
 
         public List<Note> GetAllNotesByAnimal(Animal animal)
         {
+            if (animal == null)
+                throw new ArgumentException("Animal that Notes are to be retrieved for not specified.");
+
             try
             {
                 return _context.Notes.Where(n => n.Animal.Equals(animal)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public void UpdateNote(Note note, string content)
         {
+            if (note == null)
+                throw new ArgumentException("Note to be updated not specified.");
+
+            if (string.IsNullOrEmpty(content))
+                throw new ArgumentException("Note to be updated Content not specified.");
+
             try
             {
                 Note nt = _context.Notes.Where(n => n.Equals(note)).FirstOrDefault();
@@ -115,7 +103,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

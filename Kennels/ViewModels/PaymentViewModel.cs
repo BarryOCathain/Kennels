@@ -48,7 +48,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return p;
         }
@@ -68,128 +68,137 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Payment> GetAllActivePayments()
         {
-            try
-            {
-                return _context.Payments.Where(p => p.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Payments.Where(p => p.IsObsolete == false).ToList();
         }
 
         public List<Payment> GetAllDeletedPayments()
         {
-            try
-            {
-                return _context.Payments.Where(p => p.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Payments.Where(p => p.IsObsolete == true).ToList();
         }
 
         public List<Payment> GetAllPayments()
         {
-            try
-            {
-                return _context.Payments.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Payments.ToList();
         }
 
         public List<Payment> GetPaymentsByAmountGreaterThan(double amount)
         {
+            if (amount < 0.01)
+                throw new ArgumentException("Payments requested minimum Amount must be at least £0.01");
+
             try
             {
                 return _context.Payments.Where(p => p.Amount > amount).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsByAmountLessThan(double amount)
         {
+            if (amount < 0.01)
+                throw new ArgumentException("Payments requested minimum Amount must be at least £0.01");
+
             try
             {
                 return _context.Payments.Where(p => p.Amount < amount).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsByBooking(Booking booking)
         {
+            if (booking == null)
+                throw new ArgumentException("Payments requested Booking not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.Booking.Equals(booking)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsByDate(DateTime date)
         {
+            if (date == null)
+                throw new ArgumentException("Payments requested Date not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.CreatedDate >= date.Date || p.CreatedDate < date.Date.AddDays(1)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsByPaymentType(PaymentType paymentType)
         {
+            if (paymentType == null)
+                throw new ArgumentException("Payments requested Payment Type not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.PaymentType.Equals(paymentType)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsByPaymentTypeInDateRange(PaymentType paymentType, DateTime startDate, DateTime endDate)
         {
+            if (paymentType == null)
+                throw new ArgumentException("Payments requested Payment Type not specified.");
+
+            if (startDate == null)
+                throw new ArgumentException("Payments requested Start Date not specified.");
+
+            if (endDate == null)
+                throw new ArgumentException("Payments requested End Date not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.PaymentType.Equals(paymentType) && p.CreatedDate >= startDate && p.CreatedDate <= endDate).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Payment> GetPaymentsInDateRange(DateTime startDate, DateTime endDate)
         {
+            if (startDate == null)
+                throw new ArgumentException("Payments requested Start Date not specified.");
+
+            if (endDate == null)
+                throw new ArgumentException("Payments requested End Date not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.CreatedDate >= startDate && p.CreatedDate <= endDate).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
     }

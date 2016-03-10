@@ -48,7 +48,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return pn;
         }
@@ -68,44 +68,43 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Pen> GetAllPens()
         {
-            try
-            {
-                return _context.Pens.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Pens.ToList();
         }
 
         public List<Pen> GetPensByName(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Pens requested Name not specified.");
+
             try
             {
                 return _context.Pens.Where(p => p.Name.Equals(name)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Pen> GetPensInKennel(Kennel kennel)
         {
+            if (kennel == null)
+                throw new ArgumentException("Pens requested Kennel not specified.");
+
             try
             {
                 return _context.Pens.Where(p => p.Kennel.Equals(kennel)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
     }

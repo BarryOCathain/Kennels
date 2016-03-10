@@ -68,7 +68,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
 
             return o;
@@ -91,20 +91,13 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
         public List<Owner> GetAllOwners()
         {
-            try
-            {
-                return _context.Owners.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Owners.ToList();
         }
 
         public List<Animal> GetOwnerAnimals(Owner owner)
@@ -118,7 +111,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -133,7 +126,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -148,7 +141,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -163,7 +156,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -211,7 +204,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

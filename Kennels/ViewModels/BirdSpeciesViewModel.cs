@@ -40,7 +40,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return b;
         }
@@ -60,7 +60,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
@@ -73,7 +73,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -100,7 +100,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -112,7 +112,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -132,7 +132,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

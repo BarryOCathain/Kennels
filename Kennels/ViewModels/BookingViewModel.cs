@@ -52,7 +52,10 @@ namespace Kennels.ViewModels
                 else
                     throw new InvalidOperationException("Booking specified could not be found.");
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public Booking AddBooking(DateTime startDate, DateTime endDate, User createdBy, Owner owner)
@@ -91,7 +94,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return b;
         }
@@ -149,48 +152,33 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
         public List<Booking> GetAllActiveBookings()
         {
-            try
-            {
-                return _context.Bookings.Where(b => b.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Bookings.Where(b => b.IsObsolete == false).ToList();
         }
 
         public List<Booking> GetAllBookings()
         {
-            try
-            {
-                return _context.Bookings.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Bookings.ToList();
         }
 
         public List<Booking> GetAllDeletedBookings()
         {
-            try
-            {
-                return _context.Bookings.Where(b => b.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Bookings.Where(b => b.IsObsolete == true).ToList();
         }
 
         public List<Pen> GetAvailablePens(DateTime startDate, DateTime endDate)
         {
+            if (startDate == null)
+                throw new ArgumentException("Pens requested Start Date not specified.");
+
+            if (endDate == null)
+                throw new ArgumentException("Pens requested End Date not specified.");
+
             try
             {
                 List<Pen> availablePens = _context.Pens.ToList();
@@ -208,7 +196,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -245,7 +233,10 @@ namespace Kennels.ViewModels
                 else
                     throw new InvalidOperationException("Booking that Animal is to be removed from not found.");
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void RemovePenFromBooking(Booking booking, Pen pen)

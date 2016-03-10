@@ -52,7 +52,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return d;
         }
@@ -72,21 +72,14 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Dog> GetAllActiveDogs()
         {
-            try
-            {
-                return _context.Animals.OfType<Dog>().Where(d => d.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Dog>().Where(d => d.IsObsolete == false).ToList();
         }
 
         public List<Dog> GetAllActiveDogsByOwner(Owner owner)
@@ -100,7 +93,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -115,32 +108,18 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Dog> GetAllDeletedDogs()
         {
-            try
-            {
-                return _context.Animals.OfType<Dog>().Where(d => d.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Dog>().Where(d => d.IsObsolete == false).ToList();
         }
 
         public List<Dog> GetAllDogs()
         {
-            try
-            {
-                return _context.Animals.OfType<Dog>().ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Dog>().ToList();
         }
 
         public List<Dog> GetAllDogsByOwner(Owner owner)
@@ -154,7 +133,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -192,7 +171,10 @@ namespace Kennels.ViewModels
                 else
                     throw new InvalidOperationException("Dog to be updated Not Found.");
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

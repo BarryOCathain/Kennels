@@ -53,7 +53,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return b;
         }
@@ -73,33 +73,19 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Bird> GetAllActiveBirds()
         {
-            try
-            {
-                return _context.Animals.OfType<Bird>().Where(b => b.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Bird>().Where(b => b.IsObsolete == false).ToList();
         }
 
         public List<Bird> GetAllBirds()
         {
-            try
-            {
-                return _context.Animals.OfType<Bird>().ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Bird>().ToList();
         }
 
         public List<Bird> GetAllBirdsByOwner(Owner owner)
@@ -113,20 +99,13 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Bird> GetAllDeletedBirds()
         {
-            try
-            {
-                return _context.Animals.OfType<Bird>().Where(b => b.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Bird>().Where(b => b.IsObsolete == true).ToList();
         }
 
         public void UpdateBird(Bird bird, string name, int age, bool isMale, Owner owner)
@@ -154,7 +133,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return k;
         }
@@ -64,45 +64,24 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Kennel> GetAllActiveKennels()
         {
-            try
-            {
-                return _context.Kennels.Where(k => k.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Kennels.Where(k => k.IsObsolete == false).ToList();
         }
 
         public List<Kennel> GetAllDeletedKennels()
         {
-            try
-            {
-                return _context.Kennels.Where(k => k.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Kennels.Where(k => k.IsObsolete == true).ToList();
         }
 
         public List<Kennel> GetAllKennels()
         {
-            try
-            {
-                return _context.Kennels.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Kennels.ToList();
         }
 
         public Kennel GetKennelByPen(Pen pen)
@@ -116,7 +95,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -131,7 +110,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -155,7 +134,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

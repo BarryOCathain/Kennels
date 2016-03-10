@@ -40,7 +40,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return db;
         }
@@ -60,45 +60,24 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<DogBreed> GetAllActiveDogBreeds()
         {
-            try
-            {
-                return _context.DogBreeds.Where(d => d.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.DogBreeds.Where(d => d.IsObsolete == false).ToList();
         }
 
         public List<DogBreed> GetAllDeletedDogBreeds()
         {
-            try
-            {
-                return _context.DogBreeds.Where(d => d.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.DogBreeds.Where(d => d.IsObsolete == true).ToList();
         }
 
         public List<DogBreed> GetAllDogBreeds()
         {
-            try
-            {
-                return _context.DogBreeds.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.DogBreeds.ToList();
         }
 
         public void UpdateDogBreed(DogBreed dogBreed, string name)
@@ -117,7 +96,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

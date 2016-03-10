@@ -44,7 +44,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return u;
         }
@@ -68,7 +68,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool DeleteUser(User user)
@@ -88,20 +91,13 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
         }
 
         public List<User> GetAllUsers()
         {
-            try
-            {
-                return _context.Users.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Users.ToList();
         }
 
         public User GetUserByName(string name)
@@ -115,7 +111,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -138,7 +134,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return c;
 
@@ -70,45 +70,24 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Cat> GetAllActiveCats()
         {
-            try
-            {
-                return _context.Animals.OfType<Cat>().Where(c => c.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Cat>().Where(c => c.IsObsolete == false).ToList();
         }
 
         public List<Cat> GetAllCats()
         {
-            try
-            {
-                return _context.Animals.OfType<Cat>().ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Cat>().ToList();
         }
 
         public List<Cat> GetAllDeletedCats()
         {
-            try
-            {
-                return _context.Animals.OfType<Cat>().Where(c => c.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Cat>().Where(c => c.IsObsolete == true).ToList();
         }
 
         public void UpdateCat(Cat cat, string name, int age, bool isMale, Owner owner)
@@ -136,7 +115,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

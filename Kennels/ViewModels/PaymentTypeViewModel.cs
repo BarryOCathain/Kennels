@@ -40,13 +40,16 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return pt;
         }
 
         public bool DeletePaymentType(PaymentType paymentType)
         {
+            if (paymentType == null)
+                throw new ArgumentException("Payment Type to be deleted not specified.");
+
             try
             {
                 PaymentType pt = _context.PaymentTypes.Where(p => p.Equals(paymentType)).FirstOrDefault();
@@ -57,44 +60,43 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<PaymentType> GetAllPaymentTypes()
         {
-            try
-            {
-                return _context.PaymentTypes.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.PaymentTypes.ToList();
         }
 
         public List<Payment> GetPaymentsByPaymentType(PaymentType paymentType)
         {
+            if (paymentType == null)
+                throw new ArgumentException("Payments requested Payment Type not specified.");
+
             try
             {
                 return _context.Payments.Where(p => p.PaymentType.Equals(paymentType)).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public PaymentType GetPaymentTypeByName(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Payment Type requested Name not specified.");
+
             try
             {
                 return _context.PaymentTypes.Where(p => p.Name.Equals(name)).FirstOrDefault();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
     }

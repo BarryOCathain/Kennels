@@ -18,38 +18,17 @@ namespace Kennels.ViewModels
 
         public List<Animal> GetAllActiveAnimals()
         {
-            try
-            {
-                return _context.Animals.Where(a => a.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.Where(a => a.IsObsolete == false).ToList();
         }
 
         public List<Animal> GetAllAnimals()
         {
-            try
-            {
-                return _context.Animals.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.ToList();
         }
 
         public List<Animal> GetAllDeletedAnimals()
         {
-            try
-            {
-                return _context.Animals.Where(a => a.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.Where(a => a.IsObsolete == true).ToList();
         }
     }
 }

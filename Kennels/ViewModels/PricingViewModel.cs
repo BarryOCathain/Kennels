@@ -47,7 +47,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return pr;
         }
@@ -67,21 +67,14 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true; 
         }
 
         public List<Pricing> GetAllPricings()
         {
-            try
-            {
-                return _context.Pricings.ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Pricings.ToList();
         }
 
         public Pricing GetPricingByAnimalAndDate(Animal animal, DateTime date)
@@ -99,7 +92,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -114,31 +107,37 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Pricing> GetPricingsByEndDate(DateTime endDate)
         {
+            if (endDate == null)
+                throw new ArgumentException("Pricings requested End Date not specified.");
+
             try
             {
                 return _context.Pricings.Where(p => p.EndDate == endDate).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Pricing> GetPricingsByStartDate(DateTime startDate)
         {
+            if (startDate == null)
+                throw new ArgumentException("Pricings requested Start Date not specified.");
+
             try
             {
                 return _context.Pricings.Where(p => p.StartDate == startDate).ToList();
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
     }

@@ -49,7 +49,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return h;
         }
@@ -69,21 +69,14 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Hamster> GetAllActiveHamsters()
         {
-            try
-            {
-                return _context.Animals.OfType<Hamster>().Where(h => h.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Hamster>().Where(h => h.IsObsolete == false).ToList();
         }
 
         public List<Hamster> GetAllActiveHamstersByOwner(Owner owner)
@@ -97,20 +90,13 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Hamster> GetAllDeletedHamsters()
         {
-            try
-            {
-                return _context.Animals.OfType<Hamster>().Where(h => h.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Hamster>().Where(h => h.IsObsolete == true).ToList();
         }
 
         public List<Hamster> GetAllDeletedHamstersByOwner(Owner owner)
@@ -124,20 +110,13 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
         public List<Hamster> GetAllHamsters()
         {
-            try
-            {
-                return _context.Animals.OfType<Hamster>().ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Animals.OfType<Hamster>().ToList();
         }
 
         public List<Hamster> GetAllHamstersByOwner(Owner owner)
@@ -151,7 +130,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -185,7 +164,10 @@ namespace Kennels.ViewModels
                 else
                     throw new InvalidOperationException("Hamster to be updated not found.");
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

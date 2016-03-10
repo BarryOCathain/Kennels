@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kennels.Interfaces;
 using Kennels.ViewModels;
+using Kennels.Common;
+using System.Drawing;
 
 namespace Kennels.Windows
 {
     public partial class LoginWindow : Form
     {
-        ILogin login;
+        public User User { get; set; }
+
+        private ILogin login;
         public LoginWindow()
         {
             InitializeComponent();
+
+            CommonUtilities.RecursiveLoopControls(this);
 
             login = new LoginViewModel();
         }
@@ -26,17 +25,27 @@ namespace Kennels.Windows
         {
             try
             {
-                login.LoginUser(usernameTextBox.Text, passwordTextBox.Text);
+                User = login.LoginUser(usernameTextBox.Text, passwordTextBox.Text);
                 this.DialogResult = DialogResult.OK;
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.InnerException.ToString());
+                MessageBox.Show(ex.Message);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.InnerException.ToString());
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void passwordTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                loginButton_Click(sender, e);
         }
     }
 }

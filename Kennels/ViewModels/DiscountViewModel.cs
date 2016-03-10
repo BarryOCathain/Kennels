@@ -45,7 +45,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return d;
         }
@@ -79,7 +79,7 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
             return d;
         }
@@ -99,110 +99,54 @@ namespace Kennels.ViewModels
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             return true;
         }
 
         public List<Discount> GetAllActiveDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == false).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == false).ToList();
         }
 
         public List<Discount> GetAllActiveMultiplierDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == false && d.Multiplier > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == false && d.Multiplier > 0.00).ToList();
         }
 
         public List<Discount> GetAllActiveValueDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == false && d.Value > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == false && d.Value > 0.00).ToList();
         }
 
         public List<Discount> GetAllDeletedDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == true).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == true).ToList();
         }
 
         public List<Discount> GetAllDeletedMultiplierDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == true && d.Multiplier > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == true && d.Multiplier > 0.00).ToList();
         }
 
         public List<Discount> GetAllDeletedValueDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.IsObsolete == true && d.Value > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.IsObsolete == true && d.Value > 0.00).ToList();
         }
 
         public List<Discount> GetAllDiscounts()
         {
-            throw new NotImplementedException();
+            return _context.Discounts.ToList();
         }
 
         public List<Discount> GetAllMultiplierDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.Multiplier > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.Multiplier > 0.00).ToList();
         }
 
         public List<Discount> GetAllValueDiscounts()
         {
-            try
-            {
-                return _context.Discounts.Where(d => d.Value > 0.00).ToList();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return _context.Discounts.Where(d => d.Value > 0.00).ToList();
         }
 
         public void UpdateMultiplierDiscount(Discount discount, string name, double multiplier)
@@ -225,7 +169,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void UpdateValueDiscount(Discount discount, string name, double value)
@@ -248,7 +195,10 @@ namespace Kennels.ViewModels
 
                 _context.SaveChanges();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

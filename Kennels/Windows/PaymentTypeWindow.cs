@@ -33,8 +33,9 @@ namespace Kennels.Windows
             if (paymentType.GetPaymentTypeByName(paymentTypeTextBox.Text) != null)
                 MessageBox.Show("Payment Type {0} already exists.", paymentTypeTextBox.Text);
             else
-            { }
-                //paymentType.AddPaymentType(paymentTypeTextBox.Text, )
+            {
+
+            }
         }
     }
 }
