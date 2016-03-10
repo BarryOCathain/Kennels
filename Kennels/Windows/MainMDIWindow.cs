@@ -12,8 +12,6 @@ namespace Kennels.Windows
 {
     public partial class MainMDIWindow : Form
     {
-        private int childFormNumber = 0;
-
         public MainMDIWindow()
         {
             InitializeComponent();
@@ -21,9 +19,8 @@ namespace Kennels.Windows
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form();
+            AnimalWindow childForm = new AnimalWindow();
             childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
             childForm.Show();
         }
 

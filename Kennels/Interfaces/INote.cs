@@ -21,5 +21,9 @@ namespace Kennels.Interfaces
         List<Note> GetAllDeletedNotes();
 
         List<Note> GetAllNotesByAnimal(Animal animal);
+
+        List<Note> GetAllActiveNotesByAnimal(Animal animal);
+
+        List<Note> GetAllDeletedNotesByAnimal(Animal animal);
     }
 }

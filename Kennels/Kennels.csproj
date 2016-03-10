@@ -172,11 +172,29 @@
     <Compile Include="ViewModels\PenViewModel.cs" />
     <Compile Include="ViewModels\PricingViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Windows\AnimalWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\AnimalWindow.Designer.cs">
+      <DependentUpon>AnimalWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainMDIWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Windows\MainMDIWindow.Designer.cs">
       <DependentUpon>MainMDIWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NoteWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\NoteWindow.Designer.cs">
+      <DependentUpon>NoteWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OwnerSearchWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\OwnerSearchWindow.Designer.cs">
+      <DependentUpon>OwnerSearchWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\PaymentTypeWindow.cs">
       <SubType>Form</SubType>
@@ -200,8 +218,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Windows\AnimalWindow.resx">
+      <DependentUpon>AnimalWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\MainMDIWindow.resx">
       <DependentUpon>MainMDIWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\NoteWindow.resx">
+      <DependentUpon>NoteWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\OwnerSearchWindow.resx">
+      <DependentUpon>OwnerSearchWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\PaymentTypeWindow.resx">
       <DependentUpon>PaymentTypeWindow.cs</DependentUpon>

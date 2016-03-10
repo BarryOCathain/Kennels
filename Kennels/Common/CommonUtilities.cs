@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,7 +12,7 @@ namespace Kennels.Common
         {
             foreach (Control _ctrl in ctrl.Controls)
             {
-                if (_ctrl.GetType() == typeof(TextBox))
+                if (_ctrl.GetType().Equals(typeof(TextBox)))
                 {
                     TextBox tb = _ctrl as TextBox;
 
@@ -20,7 +21,7 @@ namespace Kennels.Common
                         tb.TextChanged += new EventHandler((sender, eventArgs) => ValidateTextBox(tb));
                     }
                 }
-                else if (_ctrl.GetType() == typeof(ComboBox))
+                else if (_ctrl.GetType().Equals(typeof(ComboBox)))
                 {
                     ComboBox cb = _ctrl as ComboBox;
 
@@ -31,6 +32,22 @@ namespace Kennels.Common
                 }
                 else
                     RecursiveLoopControls(_ctrl);
+            }
+        }
+
+        public static void ToggleCombBoxesTextBoxesButtonsEnabled(Control ctrl, bool enabled, string[] exceptions)
+        {
+            List<string> _exceptions = new List<string>(exceptions);
+
+            foreach (Control _ctrl in ctrl.Controls)
+            {
+                if (_ctrl.GetType().Equals(typeof(TextBox)) || _ctrl.GetType().Equals(typeof(ComboBox)) || _ctrl.GetType().Equals(typeof(Button)))
+                {
+                    if (!_exceptions.Contains(_ctrl.Name))
+                        _ctrl.Enabled = enabled;
+                }
+                else
+                    ToggleCombBoxesTextBoxesButtonsEnabled(_ctrl,  enabled, exceptions);
             }
         }
 

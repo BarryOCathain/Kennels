@@ -18,6 +18,15 @@ namespace Kennels.ViewModels
 
         public Note AddNote(string content, User createdBy, Animal animal)
         {
+            if (string.IsNullOrEmpty(content))
+                throw new ArgumentException("New Note Content not specified.");
+
+            if (createdBy == null)
+                throw new ArgumentException("New Note Created By User not specified.");
+
+            if (animal == null)
+                throw new ArgumentException("New Note Animal not specified.");
+
             Note n = new Note
             {
                 Content = content,
@@ -62,9 +71,25 @@ namespace Kennels.ViewModels
             return _context.Notes.Where(n => n.IsObsolete == false).ToList();
         }
 
+        public List<Note> GetAllActiveNotesByAnimal(Animal animal)
+        {
+            if (animal == null)
+                throw new ArgumentException("Notes requested Animal not specified.");
+
+            return _context.Notes.Where(n => n.IsObsolete == false && n.Animal.Equals(animal)).ToList();
+        }
+
         public List<Note> GetAllDeletedNotes()
         {
             return _context.Notes.Where(n => n.IsObsolete == true).ToList();
+        }
+
+        public List<Note> GetAllDeletedNotesByAnimal(Animal animal)
+        {
+            if (animal == null)
+                throw new ArgumentException("Notes requested Animal not specified.");
+
+            return _context.Notes.Where(n => n.IsObsolete == true && n.Animal.Equals(animal)).ToList();
         }
 
         public List<Note> GetAllNotes()
