@@ -11,7 +11,7 @@ namespace Kennels.Common
         {
             foreach (Control _ctrl in ctrl.Controls)
             {
-                if (_ctrl.GetType() == typeof(TextBox) || _ctrl.GetType() == typeof(ComboBox))
+                if (_ctrl.GetType() == typeof(TextBox))
                 {
                     TextBox tb = _ctrl as TextBox;
 
