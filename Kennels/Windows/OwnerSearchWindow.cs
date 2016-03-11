@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Kennels.Interfaces;
+using Kennels.ViewModels;
 
 namespace Kennels.Windows
 {
     public partial class OwnerSearchWindow : Form
     {
+        private IOwner owner;
+
         public OwnerSearchWindow()
         {
             InitializeComponent();
+
+            owner = new OwnerViewModel(new KennelsModelContainer());
         }
 
         private void firstNameTextBox_Click(object sender, EventArgs e)
@@ -27,10 +33,26 @@ namespace Kennels.Windows
             switch (string.IsNullOrEmpty(firstName))
             {
                 case false:
-
+                    switch (string.IsNullOrEmpty(surname))
+                    {
+                        case false:
+                            //ownerSearchDataGridView.DataSource = owner.GetOwnersBySurname(surname);
+                            break;
+                        case true:
+                            ownerSearchDataGridView.DataSource = owner.GetOwnersByFirstName(firstName);
+                            break;
+                    }
+                    break;
                 case true:
-
-                default:
+                    switch (string.IsNullOrEmpty(surname))
+                    {
+                        case false:
+                            ownerSearchDataGridView.DataSource = owner.GetOwnersBySurname(surname);
+                            break;
+                        case true:
+                            ownerSearchDataGridView.DataSource = null;
+                            break;
+                    }
                     break;
             }
         }

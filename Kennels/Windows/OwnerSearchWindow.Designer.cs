@@ -34,10 +34,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.surnameLabel = new System.Windows.Forms.ToolStripLabel();
             this.surnameTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ownerSearchDataGridView = new System.Windows.Forms.DataGridView();
             this.closeButton = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownerSearchDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -82,13 +82,13 @@
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(100, 25);
             // 
-            // dataGridView1
+            // ownerSearchDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 28);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(794, 294);
-            this.dataGridView1.TabIndex = 2;
+            this.ownerSearchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ownerSearchDataGridView.Location = new System.Drawing.Point(12, 28);
+            this.ownerSearchDataGridView.Name = "ownerSearchDataGridView";
+            this.ownerSearchDataGridView.Size = new System.Drawing.Size(794, 294);
+            this.ownerSearchDataGridView.TabIndex = 2;
             // 
             // closeButton
             // 
@@ -105,13 +105,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 360);
             this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ownerSearchDataGridView);
             this.Controls.Add(this.toolStrip1);
             this.Name = "OwnerSearchWindow";
             this.Text = "OwnerSearchWindow";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownerSearchDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,7 +125,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel surnameLabel;
         private System.Windows.Forms.ToolStripTextBox surnameTextBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ownerSearchDataGridView;
         private System.Windows.Forms.Button closeButton;
     }
 }

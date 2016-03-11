@@ -20,6 +20,8 @@ namespace Kennels.Interfaces
 
         List<Owner> GetOwnersBySurname(string surname);
 
+        List<Owner> GetOwnersByFirstNameAndSurname(string firstName, string surname);
+
         List<Owner> GetAllOwners();
 
         List<Booking> GetOwnerBookings(Owner owner);

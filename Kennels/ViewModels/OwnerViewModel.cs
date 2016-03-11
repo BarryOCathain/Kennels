@@ -160,6 +160,11 @@ namespace Kennels.ViewModels
             }
         }
 
+        List<Owner> GetOwnersByFirstNameAndSurname(string firstName, string surname)
+        {
+            return _context.Owners.Where(o => o.FirstName.)
+        }
+
         public void UpdateOwner(Owner owner, string firstName, string surname, string propNameNum, string add1, string add2, string add3,
             string postcode, string phone1, string phone2, string email)
         {
