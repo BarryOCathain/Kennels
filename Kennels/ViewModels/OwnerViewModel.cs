@@ -137,7 +137,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                return _context.Owners.Where(o => o.FirstName.Equals(firstName)).ToList();
+                return _context.Owners.Where(o => o.FirstName.StartsWith(firstName)).ToList();
             }
             catch (Exception)
             {
@@ -152,7 +152,7 @@ namespace Kennels.ViewModels
 
             try
             {
-                return _context.Owners.Where(o => o.Surname.Equals(surname)).ToList();
+                return _context.Owners.Where(o => o.Surname.StartsWith(surname)).ToList();
             }
             catch (Exception)
             {
@@ -160,9 +160,15 @@ namespace Kennels.ViewModels
             }
         }
 
-        List<Owner> GetOwnersByFirstNameAndSurname(string firstName, string surname)
+        public List<Owner> GetOwnersByFirstNameAndSurname(string firstName, string surname)
         {
-            return _context.Owners.Where(o => o.FirstName.)
+            if (string.IsNullOrEmpty(firstName))
+                throw new ArgumentException("First Name of the requested Owners not specified.");
+
+            if (string.IsNullOrEmpty(surname))
+                throw new ArgumentException("Surname of the requested Owners not specified.");
+
+            return _context.Owners.Where(o => o.FirstName.StartsWith(firstName) && o.Surname.StartsWith(surname)).ToList();
         }
 
         public void UpdateOwner(Owner owner, string firstName, string surname, string propNameNum, string add1, string add2, string add3,

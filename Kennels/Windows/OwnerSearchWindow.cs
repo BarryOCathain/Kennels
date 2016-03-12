@@ -20,12 +20,13 @@ namespace Kennels.Windows
         {
             InitializeComponent();
 
+            this.MdiParent = Program.MainWindow;
+
             owner = new OwnerViewModel(new KennelsModelContainer());
-        }
 
-        private void firstNameTextBox_Click(object sender, EventArgs e)
-        {
+            firstNameTextBox.TextChanged += (sender, eventArgs) => SearchOwners(firstNameTextBox.Text, surnameTextBox.Text);
 
+            surnameTextBox.TextChanged += (sender, eventArgs) => SearchOwners(firstNameTextBox.Text, surnameTextBox.Text);
         }
 
         private void SearchOwners(string firstName, string surname)
@@ -36,7 +37,7 @@ namespace Kennels.Windows
                     switch (string.IsNullOrEmpty(surname))
                     {
                         case false:
-                            //ownerSearchDataGridView.DataSource = owner.GetOwnersBySurname(surname);
+                            ownerSearchDataGridView.DataSource = owner.GetOwnersByFirstNameAndSurname(firstName, surname);
                             break;
                         case true:
                             ownerSearchDataGridView.DataSource = owner.GetOwnersByFirstName(firstName);
@@ -55,6 +56,11 @@ namespace Kennels.Windows
                     }
                     break;
             }
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

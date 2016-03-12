@@ -64,7 +64,6 @@
             // 
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(100, 25);
-            this.firstNameTextBox.Click += new System.EventHandler(this.firstNameTextBox_Click);
             // 
             // toolStripSeparator1
             // 
@@ -98,6 +97,7 @@
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // OwnerSearchWindow
             // 

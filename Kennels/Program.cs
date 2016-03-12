@@ -6,6 +6,8 @@ namespace Kennels
 {
     static class Program
     {
+        public static MainMDIWindow MainWindow;
+
         public static User User;
         /// <summary>
         /// The main entry point for the application.
@@ -21,8 +23,15 @@ namespace Kennels
             if (lw.ShowDialog() == DialogResult.OK)
             {
                 User = lw.User;
-                Application.Run(new MainMDIWindow());
+
+                MainWindow = new MainMDIWindow();
+                Application.Run(MainWindow);
             }
+        }
+
+        public static void AddChildForm(Form form)
+        {
+            
         }
     }
 }

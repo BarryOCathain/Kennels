@@ -96,7 +96,8 @@ namespace Kennels.Windows
 
         private void changeOwnerButton_Click(object sender, EventArgs e)
         {
-
+            OwnerSearchWindow os = new OwnerSearchWindow();
+            os.Show();
         }
     }
 }
